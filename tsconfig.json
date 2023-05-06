@@ -1,0 +1,14 @@
+{
+    // https://www.typescriptlang.org/tsconfig
+    "compilerOptions": {
+        "allowJs": true,
+        "target": "ES5",
+        "lib": ["ES5"],
+        "module": "CommonJS",
+        "moduleResolution": "classic",
+        "strict": true,
+        "newLine": "lf",
+        "outDir": "dist",
+        "esModuleInterop": true
+    }
+}
