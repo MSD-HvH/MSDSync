@@ -1,14 +1,27 @@
 {
     // https://www.typescriptlang.org/tsconfig
     "compilerOptions": {
+        "baseUrl": "./",
+
         "allowJs": true,
-        "target": "ES5",
-        "lib": ["ES5"],
+        "strict": true,
+        "noUncheckedIndexedAccess": true,
+        "noUnusedParameters": true,
+
         "module": "CommonJS",
         "moduleResolution": "classic",
-        "strict": true,
+
+        // "declaration": true,
+        // "declarationDir": "typings",
+        // "outDir": "dist",
+        "outDir": "./",
         "newLine": "lf",
-        "outDir": "dist",
-        "esModuleInterop": true
-    }
+        "esModuleInterop": true,
+
+        "lib": ["ES5"],
+        "target": "ES5"
+    },
+
+    "include": ["index.ts", "typings", "src"],
+    "exclude": ["dist"]
 }
