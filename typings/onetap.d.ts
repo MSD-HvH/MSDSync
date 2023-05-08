@@ -1,3 +1,10 @@
+/**
+ * TODO: JSDoc
+ *  - Examples
+ *  - Params
+ *  - Description
+ */
+
 // #region Types
 type RGBAColor = [number, number, number, number];
 
@@ -794,14 +801,14 @@ declare namespace DataFile {
  * @author Mased
  *
  * ---
- * Материалы:
- * @link https://legacy.leodev.xyz
- * @link https://docs.onecrack.shop
- * @link https://gamesensical.gitbook.io/docs/developers/netprops
- * @link https://github.com/MasedMSD/MSDSquad
- * @link https://developer.valvesoftware.com/wiki/Main_Page
- * @link https://wiki.alliedmods.net/Counter-Strike:_Global_Offensive_Events
- * @link https://github.com/aprxl/onetap-ts-boilerplate
- * @link https://learn.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes
+ * **Материалы:**
+ * @see https://legacy.leodev.xyz
+ * @see https://docs.onecrack.shop
+ * @see https://gamesensical.gitbook.io/docs/developers/netprops
+ * @see https://github.com/MasedMSD/MSDSquad
+ * @see https://developer.valvesoftware.com/wiki/Main_Page
+ * @see https://wiki.alliedmods.net/Counter-Strike:_Global_Offensive_Events
+ * @see https://github.com/aprxl/onetap-ts-boilerplate
+ * @see https://learn.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes
  * ---
  */
