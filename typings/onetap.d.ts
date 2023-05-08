@@ -586,8 +586,8 @@ declare namespace Event {
 // #endregion
 // #region Trace
 declare namespace Trace {
-    function RawLine<E extends EntityID, F extends Vector3D, S extends Vector3D, M extends number, T extends 0 | 1 | 2>(
-        skip_entity: E,
+    function RawLine<ID extends EntityID, F extends Vector3D, S extends Vector3D, M extends number, T extends 0 | 1 | 2>(
+        skip_entity: ID,
         from: F,
         to: S,
         mask: M,
@@ -603,7 +603,7 @@ declare namespace Trace {
         to: S
     ): number[];
 
-    function Line<E extends EntityID, F extends Vector3D, S extends Vector3D>(skip_entity: E, from: F, to: S): number[];
+    function Line<ID extends EntityID, F extends Vector3D, S extends Vector3D>(skip_entity: ID, from: F, to: S): number[];
 }
 // #endregion
 // #region Sound
@@ -704,61 +704,73 @@ declare namespace AntiAim {
 // #endregion
 // #region Ragebot
 declare namespace Ragebot {
-    function IgnoreTargetHitbox(): void;
+    function IgnoreTargetHitbox<ID extends EntityID, H extends number>(index: ID, hitbox: H): void;
 
-    function GetTargetHitchance(): void;
+    function GetTargetHitchance(): number;
 
-    function GetTarget(): void;
+    function GetTargets(): EntityID[];
 
-    function IgnoreTarget(): void;
+    function IgnoreTarget<ID extends EntityID>(index: ID): void;
 
-    function ForceHitboxSafety(): void;
+    function ForceHitboxSafety<H extends number>(hitbox: H): void;
 
-    function ForceTargetMinimumDamage(): void;
+    function ForceTargetMinimumDamage<ID extends EntityID, D extends number>(index: ID, damage: D): void;
 
-    function ForceTargetHitchance(): void;
+    function ForceTargetHitchance<ID extends EntityID, H extends number>(index: ID, hitchance: H): void;
 
-    function ForceTargetSafety(): void;
+    function ForceTargetSafety<ID extends EntityID>(index: ID): void;
 
-    function ForceTarget(): void;
+    function ForceTarget<ID extends EntityID>(index: ID): void;
 
-    function GetTarget(): void;
+    function GetTarget(): EntityID;
 }
 // #endregion
 // #region Material
 declare namespace Material {
-    function GetMaterialAtCrosshair(): void;
+    function GetMaterialAtCrosshair(): string;
 
-    function Replace(): void;
+    function Replace<F extends string, S extends string>(original_material: F, material: S): void;
 
-    function RefreshProxy(): void;
+    function RefreshProxy<M extends string>(material: M): void;
 
-    function SetProxyKeyValue(): void;
+    function SetProxyKeyValue<M extends string, K extends string, V extends string>(material: M, key: K, value: V): void;
 
-    function DestroyProxy(): void;
+    function DestroyProxy<M extends string>(material: M): void;
 
-    function CreateProxy(): void;
+    function CreateProxy<M extends string>(material: M): void;
 
-    function Refresh(): void;
+    function Refresh<I extends number>(index: I): boolean;
 
-    function SetKeyValue(): void;
+    function SetKeyValue<I extends number, S extends string, V extends number>(index: I, shader: S, value: V): void;
 
-    function Get(): void;
+    function Get<N extends string>(name: N): number;
 
-    function Destroy(): void;
+    function Destroy<N extends string>(name: N): boolean;
 
-    function Create(): void;
+    function Create<N extends string>(name: N): boolean;
 }
 // #endregion
 // #region View
 declare namespace View {
-    function WorldToScreen(): void;
+    function WorldToScreen<I extends number, P extends Vector3D>(index: I, point: P): Vector2D;
 
-    function Render(): void;
+    function Render<I extends number, X extends number, Y extends number, W extends number, H extends number>(
+        index: I,
+        x: X,
+        y: Y,
+        width: W,
+        height: H
+    ): void;
 
-    function Update(): void;
+    function Update<I extends number, W extends number, H extends number, O extends Vector3D, A extends Vector3D>(
+        index: I,
+        width: W,
+        height: H,
+        origin: O,
+        angles: A
+    ): void;
 
-    function Create(): void;
+    function Create(): number;
 }
 // #endregion
 // #region DataFile
