@@ -223,6 +223,6 @@ export class Window implements WindowStructure, WindowOptions {
 
         return sizeIncluded
             ? this.x >= x && this.y >= y && this.x + this.width <= x + width && this.y + this.height <= y + height
-            : this.x >= x && this.y >= y && this.x <= x + width && this.y <= y + height;
+            : this.x + this.width >= x && this.y + this.height >= y && this.x <= x + width && this.y <= y + height;
     };
 }
