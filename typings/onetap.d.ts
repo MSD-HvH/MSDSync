@@ -382,11 +382,7 @@ declare namespace UI {
 
     function AddColorPicker<P extends Path, N extends string>(path: P, name: N): [...P, N];
 
-    function AddMultiDropdown<P extends Path, N extends string, E extends string[]>(
-        path: P,
-        name: N,
-        elements: E
-    ): [...P, N];
+    function AddMultiDropdown<P extends Path, N extends string, E extends string[]>(path: P, name: N, elements: E): [...P, N];
 
     function AddDropdown<P extends Path, N extends string, E extends string[], S extends 1 | 0>(
         path: P,
@@ -395,11 +391,7 @@ declare namespace UI {
         search_bar: S
     ): [...P, N];
 
-    function AddHotkey<P extends Path, N extends string, D extends string>(
-        path: P,
-        name: N,
-        display_name: D
-    ): [...P, N];
+    function AddHotkey<P extends Path, N extends string, D extends string>(path: P, name: N, display_name: D): [...P, N];
 
     function AddSliderFloat<P extends Path, N extends string, F extends number, S extends number>(
         path: P,
@@ -461,12 +453,7 @@ declare namespace Entity {
 
     function GetWeapon<ID extends EntityID>(index: ID): EntityID;
 
-    function SetProp<ID extends EntityID, T extends string, P extends string, V extends any>(
-        index: ID,
-        table: T,
-        prop: P,
-        value: V
-    ): any;
+    function SetProp<ID extends EntityID, T extends string, P extends string, V extends any>(index: ID, table: T, prop: P, value: V): any;
 
     function GetProp<ID extends EntityID, T extends string, P extends string>(index: ID, table: T, prop: P): any;
 
@@ -505,9 +492,9 @@ declare namespace Entity {
 // #endregion
 // #region Render
 declare namespace Render {
-    function GetFont(): void;
+    function GetFont<N extends string, S extends number, W extends boolean>(name: N, size: S, is_windows: W): number;
 
-    function TextSize(): void;
+    function TextSize<T extends string, F extends number>(text: T, font: F): Vector2D;
 
     function String(): void;
 
@@ -521,9 +508,9 @@ declare namespace Render {
 
     function GradientRect(): void;
 
-    function GetScreenSize(): void;
+    function GetScreenSize(): Vector2D;
 
-    function WorldToScreen(): void;
+    function WorldToScreen<P extends Vector3D>(point: P): Vector2D;
 
     function Circle(): void;
 
@@ -531,7 +518,13 @@ declare namespace Render {
 
     function Rect(): void;
 
-    function Line(): void;
+    function Line<X1 extends number, Y1 extends number, X2 extends number, Y2 extends number, C extends RGBAColor>(
+        x1: X1,
+        y1: Y1,
+        x2: X2,
+        y2: Y2,
+        color: C
+    ): void;
 }
 // #endregion
 // #region Convar
@@ -647,14 +640,14 @@ declare namespace Input {
 
     function ForceCursor<S extends 1 | 0>(state: S): void;
 
-    function GetCursorPosition(): [number, number];
+    function GetCursorPosition(): Vector2D;
 
     function IsKeyPressed<K extends number>(vkey_code: K): boolean;
 }
 // #endregion
 // #region World
 declare namespace World {
-    function CreateLightningStrike<S extends boolean, P extends [number, number, number]>(sound: S, position: P): void;
+    function CreateLightningStrike<S extends boolean, P extends Vector3D>(sound: S, position: P): void;
 
     function GetModelIndex<P extends string>(model_path: P): number;
 
