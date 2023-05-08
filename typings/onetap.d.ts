@@ -496,27 +496,60 @@ declare namespace Render {
 
     function TextSize<T extends string, F extends number>(text: T, font: F): Vector2D;
 
-    function String(): void;
+    function String<X extends number, Y extends number, IS_C extends 1 | 0, T extends string, C extends RGBAColor, F extends number>(
+        x: X,
+        y: Y,
+        centered: IS_C,
+        text: T,
+        color: C,
+        font: F
+    ): void;
 
-    function FilledCircle(): void;
+    function FilledCircle<X extends number, Y extends number, R extends number, C extends RGBAColor>(x: X, y: Y, radius: R, color: C): void;
 
-    function TexturedRect(): void;
+    function TexturedRect<X extends number, Y extends number, W extends number, H extends number, T extends number>(
+        x: X,
+        y: Y,
+        width: W,
+        height: H,
+        texture: T
+    ): void;
 
-    function AddTexture(): void;
+    function AddTexture<P extends string>(path: P): number;
 
-    function Polygon(): void;
+    function Polygon<P extends [Vector2D, Vector2D, Vector2D], C extends RGBAColor>(points: P, color: C): void;
 
-    function GradientRect(): void;
+    function GradientRect<
+        X extends number,
+        Y extends number,
+        W extends number,
+        H extends number,
+        IS_H extends 1 | 0,
+        C1 extends RGBAColor,
+        C2 extends RGBAColor
+    >(x: X, y: Y, width: W, height: H, is_horizontal: IS_H, color1: C1, color2: C2): void;
 
     function GetScreenSize(): Vector2D;
 
     function WorldToScreen<P extends Vector3D>(point: P): Vector2D;
 
-    function Circle(): void;
+    function Circle<X extends number, Y extends number, R extends number, C extends RGBAColor>(x: X, y: Y, radius: R, color: C): void;
 
-    function FilledRect(): void;
+    function FilledRect<X extends number, Y extends number, W extends number, H extends number, C extends RGBAColor>(
+        x: X,
+        y: Y,
+        width: W,
+        height: H,
+        color: C
+    ): void;
 
-    function Rect(): void;
+    function Rect<X extends number, Y extends number, W extends number, H extends number, C extends RGBAColor>(
+        x: X,
+        y: Y,
+        width: W,
+        height: H,
+        color: C
+    ): void;
 
     function Line<X1 extends number, Y1 extends number, X2 extends number, Y2 extends number, C extends RGBAColor>(
         x1: X1,
