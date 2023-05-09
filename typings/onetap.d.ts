@@ -435,7 +435,7 @@ declare namespace UI {
 declare namespace Entity {
     function GetAnimationLayer<ID extends EntityID, L extends AnimationLayerIndex>(index: ID, layer: L): AnimationLayer;
 
-    function GetSteamID<ID extends EntityID>(index: ID): Number;
+    function GetSteamID<ID extends EntityID>(index: ID): number;
 
     function DisableESP<ID extends EntityID>(index: ID): void;
 
