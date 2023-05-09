@@ -1,6 +1,31 @@
-**/*.js
-MSDSync.ts
+# Packages
+node_modules
 
-dist/
-node_modules/
-jspm_packages/
+# Log files
+logs
+*.log
+npm-debug.log*
+
+# JS Files
+**/*.js
+
+# Test Files
+test.ts
+
+# Dist
+dist
+dist-docs
+
+# Misc
+.vscode
+!.vscode/extensions.json
+!.vscode/settings.json
+out
+
+# yarn
+.pnp.*
+.yarn/*
+
+# Cache
+.prettiercache
+.eslintcache

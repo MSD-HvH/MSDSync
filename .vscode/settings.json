@@ -1,14 +1,24 @@
 {
-    "javascript.preferences.importModuleSpecifierEnding": "js",
-    "javascript.preferences.importModuleSpecifier": "non-relative",
-    "typescript.preferences.importModuleSpecifierEnding": "js",
-    "typescript.preferences.importModuleSpecifier": "non-relative",
-    "npm.packageManager": "yarn",
-    "editor.codeActionsOnSave": {
-        "source.fixAll": true,
-        "source.organizeImports": false
-    },
-    "files.exclude": {
-        "src/**/*.js": true
-    }
+	"javascript.preferences.importModuleSpecifierEnding": "js",
+	"javascript.preferences.importModuleSpecifier": "non-relative",
+	"typescript.preferences.importModuleSpecifierEnding": "js",
+	"typescript.preferences.importModuleSpecifier": "non-relative",
+
+	"eslint.validate": ["javascript", "typescript"],
+
+	"npm.packageManager": "yarn",
+
+	"files.insertFinalNewline": true,
+	"files.eol": "\n",
+
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"editor.codeActionsOnSave": {
+		"source.fixAll": true,
+		"source.organizeImports": false
+	},
+
+	"files.exclude": {
+		"src/**/*.js": true,
+		"node_modules": true
+	}
 }

@@ -1,23 +1,28 @@
 {
-    "name": "msdsync",
-    "version": "1.0.0",
-    "license": "MIT",
-    "contributors": [
-        "MasedMSD"
-    ],
-    "keywords": [
-        "onetap",
-        "onetapv3",
-        "onetapv4",
-        "onetapjs"
-    ],
-    "homepage": "https://github.com/MasedMSD/MSDSync",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/MasedMSD/MSDSync"
-    },
-    "bugs": {
-        "url": "https://github.com/MasedMSD/MSDSync/issues"
-    },
-    "packageManager": "yarn@3.5.1"
+	"name": "msdsync",
+	"version": "0.0.0",
+	"license": "MIT",
+	"contributors": [
+		"MasedMSD"
+	],
+	"keywords": [
+		"onetap",
+		"onetapv3",
+		"onetapv4",
+		"onetapjs"
+	],
+	"homepage": "https://github.com/MasedMSD/MSDSync",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/MasedMSD/MSDSync"
+	},
+	"bugs": {
+		"url": "https://github.com/MasedMSD/MSDSync/issues"
+	},
+	"packageManager": "yarn@3.5.1",
+	"dependencies": {},
+	"devDependencies": {
+		"eslint": "^8.40.0",
+		"prettier": "^2.8.8"
+	}
 }
