@@ -22,10 +22,8 @@
 		"removeComments": false,
 		"noImplicitThis": true,
 
-		"ignoreDeprecations": "5.0",
-
 		"lib": ["ES5"],
-		"target": "ES3"
+		"target": "ES5"
 	},
 
 	"include": ["test.ts", "typings"],
