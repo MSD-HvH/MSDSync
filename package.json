@@ -20,6 +20,7 @@
 		"url": "https://github.com/MasedMSD/MSDSync/issues"
 	},
 	"packageManager": "yarn@3.5.1",
+	"typings": "./typings",
 	"dependencies": {
 		"prettier": "^2.8.8",
 		"typescript": "^5.0.4"
