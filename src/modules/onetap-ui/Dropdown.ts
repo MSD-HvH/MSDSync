@@ -34,7 +34,7 @@ export interface DropdownStructure<N extends string, E extends string, A extends
 
 	SetEnabled: <V extends 0 | 1>(value: V) => Dropdown<N, E, A>;
 
-	UpdateList: <L extends string[]>(list: L) => Dropdown<N, E, A>;
+	UpdateList: (list: A) => Dropdown<N, E, A>;
 
 	AddCallback: <F extends CallbackFunction>(callbackFn: F) => Dropdown<N, E, A>;
 
@@ -101,7 +101,7 @@ export class Dropdown<N extends string, E extends string, A extends E[]>
 		return this;
 	};
 
-	public readonly UpdateList = (items: E[]): Dropdown<N, E, A> => {
+	public readonly UpdateList = (items: A): Dropdown<N, E, A> => {
 		UI.UpdateList(this.GetPath(), items);
 		this.elements = items;
 
@@ -124,13 +124,3 @@ export class Dropdown<N extends string, E extends string, A extends E[]>
 		return this;
 	};
 }
-
-const test = new Dropdown({
-	name: "test",
-	path: [""],
-	elements: ["Hello", "World"],
-});
-
-test.UpdateList(["test", "test"]);
-
-test.elements[0] === "";
