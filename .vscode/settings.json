@@ -18,8 +18,8 @@
 	},
 
 	"files.exclude": {
-		"src/**/*.js": true,
 		"node_modules": true,
+		"yarn.lock": true,
 
 		// Misc Files
 		".gitattributes": true,
@@ -32,6 +32,8 @@
 		"LICENSE": true,
 		"README.md": true,
 
-		"yarn.lock": true
+		"src/**/*.js": true,
+		"tsconfig.docs.json": true,
+		"tsconfig.json": true
 	}
 }

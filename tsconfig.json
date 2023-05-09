@@ -3,25 +3,31 @@
 	"compilerOptions": {
 		"baseUrl": "./",
 
-		"allowJs": true,
 		"strict": true,
 		"noUncheckedIndexedAccess": true,
 		"noUnusedParameters": true,
+		"allowUnreachableCode": false,
+		"allowUnusedLabels": false,
+		"allowSyntheticDefaultImports": true,
+
+		"types": [],
 
 		"module": "CommonJS",
-		"moduleResolution": "classic",
+		"moduleResolution": "node",
 
 		"declaration": true,
-		"declarationMap": true,
-		// "outDir": "dist",
 		"outDir": "./",
 		"newLine": "lf",
 		"esModuleInterop": true,
+		"removeComments": false,
+		"noImplicitThis": true,
+
+		"ignoreDeprecations": "5.0",
 
 		"lib": ["ES5"],
-		"target": "ES5"
+		"target": "ES3"
 	},
 
-	"include": ["MSDSync.ts", "test.ts", "typings", "src"],
+	"include": ["test.ts", "typings"],
 	"exclude": ["dist", "**/dist/*", "node_modules", "**/node_modules/*"]
 }

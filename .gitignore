@@ -20,6 +20,7 @@ dist-docs
 .vscode
 !.vscode/extensions.json
 !.vscode/settings.json
+docs
 out
 
 # yarn
