@@ -23,7 +23,6 @@
 
 		// Misc Files
 		".gitattributes": true,
-		".gitignore": true,
 		".github": true,
 
 		".prettierignore": true,
@@ -34,6 +33,5 @@
 
 		"src/**/*.js": true,
 		"tsconfig.docs.json": true
-		// "tsconfig.json": true
 	}
 }
