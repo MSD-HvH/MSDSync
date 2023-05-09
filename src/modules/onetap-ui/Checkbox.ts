@@ -218,7 +218,7 @@ export interface CheckboxStructure<N extends string> {
 
 export class Checkbox<N extends string> implements CheckboxOptions<N>, CheckboxStructure<N> {
 	public name: N;
-	public path: string[];
+	public readonly path: string[];
 	public value: 0 | 1 = 0;
 	public callbackFn: CallbackFunction;
 
