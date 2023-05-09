@@ -33,7 +33,7 @@
 		"README.md": true,
 
 		"src/**/*.js": true,
-		"tsconfig.docs.json": true,
-		"tsconfig.json": true
+		"tsconfig.docs.json": true
+		// "tsconfig.json": true
 	}
 }
