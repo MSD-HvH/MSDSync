@@ -101,6 +101,9 @@ export class Dropdown<N extends string, E extends string, A extends E[]>
 		return this;
 	};
 
+	/**
+	 * @deprecated
+	 */
 	public readonly UpdateList = (items: A): Dropdown<N, E, A> => {
 		UI.UpdateList(this.GetPath(), items);
 		this.elements = items;
