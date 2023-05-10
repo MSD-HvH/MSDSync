@@ -22,7 +22,7 @@
 		"removeComments": false,
 		"noImplicitThis": true,
 
-		"lib": ["ES5"],
+		"lib": ["ES5", "ES2015"],
 		"target": "ES5"
 	},
 

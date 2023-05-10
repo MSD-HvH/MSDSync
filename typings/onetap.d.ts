@@ -6,22 +6,22 @@
  */
 
 // #region Types
-type RGBAColor = [number, number, number, number];
+declare type RGBAColor = [number, number, number, number];
 
-type EntityID = number;
-type UserID = number;
+declare type EntityID = number;
+declare type UserID = number;
 
-type Vector2D = [number, number];
-type Vector3D = [number, number, number];
+declare type Vector2D = [number, number];
+declare type Vector3D = [number, number, number];
 
-type Path = string[];
+declare type Path = string[];
 
-interface PredictedGrenadeHit {
+declare interface PredictedGrenadeHit {
 	EntityIndex: EntityID;
 	Damage: number;
 }
 
-interface PredictedGrenade {
+declare interface PredictedGrenade {
 	IsLive: boolean;
 	Owner: EntityID;
 	Type: "Molotov" | "Grenade" | "Smoke" | "Flash" | "Decoy" | "Incendiary";
@@ -30,7 +30,7 @@ interface PredictedGrenade {
 	Hits: Array<PredictedGrenadeHit>;
 }
 
-interface AnimationLayer {
+declare interface AnimationLayer {
 	Sequence: number;
 	Activity: number;
 	Weight: number;

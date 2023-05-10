@@ -1,10 +1,63 @@
+export type ColorName =
+	// Default Colors
+	| "Red"
+	| "Orange"
+	| "Yellow"
+	| "Green"
+	| "Aqua"
+	| "Blue"
+	| "Purple"
+	// Dark Colors
+	| "DarkRed"
+	| "DarkOrange"
+	| "DarkYellow"
+	| "DarkGreen"
+	| "DarkAqua"
+	| "DarkBlue"
+	| "DarkPurple"
+	// Light Colors
+	| "LightRed"
+	| "LightOrange"
+	| "LightYellow"
+	| "LightGreen"
+	| "LightAqua"
+	| "LightBlue"
+	| "LightPurple";
+
+export const Colors: Record<ColorName, RGBAColor> = {
+	// Default Colors
+	Red: [255, 0, 0, 255],
+	Orange: [255, 130, 0, 255],
+	Yellow: [255, 255, 0, 255],
+	Green: [0, 255, 0, 255],
+	Aqua: [0, 255, 255, 255],
+	Blue: [0, 0, 255, 255],
+	Purple: [130, 0, 255, 255],
+	// Dark Colors
+	DarkRed: [200, 0, 0, 255],
+	DarkOrange: [200, 100, 0, 255],
+	DarkYellow: [200, 210, 0, 255],
+	DarkGreen: [0, 200, 0, 255],
+	DarkAqua: [0, 210, 200, 255],
+	DarkBlue: [0, 0, 210, 255],
+	DarkPurple: [100, 0, 200, 255],
+	// Light Colors
+	LightRed: [255, 100, 100, 255],
+	LightOrange: [255, 130, 100, 255],
+	LightYellow: [255, 240, 100, 255],
+	LightGreen: [100, 255, 100, 255],
+	LightAqua: [100, 255, 255, 255],
+	LightBlue: [100, 100, 255, 255],
+	LightPurple: [130, 100, 255, 255],
+};
+
 export interface ColorRGBAOptions {
 	/**
 	 * Цвет в формате RGBA
 	 *
-	 * @type {[number, number, number, number]}
+	 * @type {RGBAColor}
 	 */
-	color: [number, number, number, number];
+	color: RGBAColor;
 }
 
 export interface ColorRGBAStructure {
@@ -71,17 +124,17 @@ export interface ColorRGBAStructure {
 	/**
 	 * Установить новый цвет
 	 *
-	 * @param {[number, number, number, number]} value
+	 * @param {RGBAColor} value
 	 * @returns {ColorRGBA}
 	 */
-	SetColor: <V extends [number, number, number, number]>(value: V) => ColorRGBA;
+	SetColor: <V extends RGBAColor>(value: V) => ColorRGBA;
 
 	/**
 	 * Преобразует цвет в массив
 	 *
-	 * @returns {[number, number, number, number]}
+	 * @returns {RGBAColor}
 	 */
-	toArray: () => [number, number, number, number];
+	toArray: () => RGBAColor;
 
 	/**
 	 * Преобразует цвет в объект
@@ -100,7 +153,7 @@ export interface ColorRGBAStructure {
 }
 
 export class ColorRGBA implements ColorRGBAOptions, ColorRGBAStructure {
-	public color: [number, number, number, number];
+	public color: RGBAColor;
 
 	/**
 	 * @constructor
@@ -150,13 +203,13 @@ export class ColorRGBA implements ColorRGBAOptions, ColorRGBAStructure {
 		return this;
 	};
 
-	public readonly SetColor = <V extends [number, number, number, number]>(value: V): ColorRGBA => {
+	public readonly SetColor = <V extends RGBAColor>(value: V): ColorRGBA => {
 		this.color = value;
 
 		return this;
 	};
 
-	public readonly toArray = (): [number, number, number, number] => {
+	public readonly toArray = (): RGBAColor => {
 		return this.color;
 	};
 
@@ -236,6 +289,6 @@ export class ColorHEX implements ColorHEXOptions, ColorHEXStructure {
 
 		color.length === 8 ? parsed.push(parseInt(color.slice(6, 8), 16)) : parsed.push(255);
 
-		return new ColorRGBA({ color: parsed as [number, number, number, number] });
+		return new ColorRGBA({ color: parsed as RGBAColor });
 	};
 }
