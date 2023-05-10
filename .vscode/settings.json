@@ -1,11 +1,38 @@
 {
-    "javascript.preferences.importModuleSpecifierEnding": "js",
-    "javascript.preferences.importModuleSpecifier": "non-relative",
-    "typescript.preferences.importModuleSpecifierEnding": "js",
-    "typescript.preferences.importModuleSpecifier": "non-relative",
-    "npm.packageManager": "yarn",
-    "editor.codeActionsOnSave": {
-        "source.fixAll": true,
-        "source.organizeImports": false
-    }
+	"javascript.preferences.importModuleSpecifierEnding": "js",
+	"javascript.preferences.importModuleSpecifier": "non-relative",
+
+	"typescript.preferences.importModuleSpecifierEnding": "js",
+	"typescript.preferences.importModuleSpecifier": "non-relative",
+
+	"eslint.validate": ["javascript", "typescript"],
+
+	"npm.packageManager": "yarn",
+
+	"files.insertFinalNewline": true,
+	"files.eol": "\n",
+
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"editor.codeActionsOnSave": {
+		"source.fixAll": true,
+		"source.organizeImports": false
+	},
+
+	"files.exclude": {
+		"node_modules": true,
+		"yarn.lock": true,
+
+		// Misc Files
+		".gitattributes": true,
+		".github": true,
+
+		".prettierignore": true,
+		".prettierrc.json": true,
+
+		"LICENSE": true,
+		"README.md": true,
+
+		"src/**/*.js": true,
+		"tsconfig.docs.json": true
+	}
 }

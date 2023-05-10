@@ -1,2 +1,32 @@
-node_modules/
-jspm_packages/
+# Packages
+node_modules
+
+# Log files
+logs
+*.log
+npm-debug.log*
+
+# JS Files
+**/*.js
+
+# Test Files
+test.ts
+
+# Dist
+dist
+dist-docs
+
+# Misc
+.vscode
+!.vscode/extensions.json
+!.vscode/settings.json
+docs
+out
+
+# yarn
+.pnp.*
+.yarn/*
+
+# Cache
+.prettiercache
+.eslintcache
