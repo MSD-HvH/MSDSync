@@ -1,4 +1,4 @@
-import { InputSystem, Lerp } from "./index.js";
+import { InputSystem, Lerp, Window } from "./index.js";
 
 export interface DragOptions {
 	/**
@@ -16,59 +16,52 @@ export interface DragOptions {
 	input: InputSystem;
 }
 
-export interface DragStructure {
-	/**
-	 * Перемещается ли элемент сейчас
-	 *
-	 * @type {boolean}
-	 */
-	is_dragging: boolean;
-
-	/**
-	 * Кешированная позиция перемещения
-	 *
-	 * @type {[number, number]}
-	 */
-	drag_position: [number, number];
-
-	/**
-	 * Анимация обводки
-	 *
-	 * @type {number}
-	 */
-	outline_alpha: number;
-
-	/**
-	 * Функция для того чтобы элемент перемещался
-	 *
-	 * @returns {Drag}
-	 */
-	Drag: () => Drag;
-
-	/**
-	 * Функция для рендера обводки
-	 *
-	 * @param {{color: [number, number, number, number]; radius?: number}} options Настройки для обводки
-	 * @returns {Drag}
-	 */
-	RenderOutline: (options: { color: [number, number, number, number]; radius?: number }) => Drag;
-}
-
 /**
  * Класс для перемещения
  *
  * @class
  * @implements {DragStructure}
  */
-export class Drag implements DragOptions, DragStructure {
-	public is_dragging: boolean = false;
-	public drag_position: [number, number] = [0, 0];
+export class Drag implements DragOptions {
+	/**
+	 * Перемещается ли элемент сейчас
+	 *
+	 * @type {boolean}
+	 */
+	private is_dragging: boolean = false;
 
+	/**
+	 * Кешированная позиция перемещения
+	 *
+	 * @type {Vector2D}
+	 */
+	public drag_position: Vector2D = [0, 0];
+
+	/**
+	 * Анимация обводки
+	 *
+	 * @type {number}
+	 */
 	public outline_alpha: number = 0;
 
+	/**
+	 * Окно
+	 *
+	 * @type {{ x: number; y: number; width: number; height: number }}
+	 */
 	public readonly window: { x: number; y: number; width: number; height: number };
+
+	/**
+	 * Система для работы с перемещением
+	 *
+	 * @type {InputSystem}
+	 */
 	public readonly input: InputSystem;
 
+	/**
+	 * @constructor
+	 * @param {DragOptions} options Настройки перемещения
+	 */
 	constructor(options: DragOptions) {
 		const { window, input } = options;
 
@@ -76,6 +69,15 @@ export class Drag implements DragOptions, DragStructure {
 		this.input = input;
 	}
 
+	public readonly IsDragging = (): boolean => {
+		return this.is_dragging;
+	};
+
+	/**
+	 * Функция для того чтобы элемент перемещался
+	 *
+	 * @returns {Drag}
+	 */
 	public readonly Drag = (options?: { x?: number; y?: number; width?: number; height?: number }): Drag => {
 		const [x, y] = [this.window.x, this.window.y];
 		const [mouse_x, mouse_y] = this.input.mousePos;
@@ -96,6 +98,12 @@ export class Drag implements DragOptions, DragStructure {
 		return this;
 	};
 
+	/**
+	 * Функция для рендера обводки
+	 *
+	 * @param {{color: [number, number, number, number]; radius?: number}} options Настройки для обводки
+	 * @returns {Drag}
+	 */
 	public readonly RenderOutline = (options?: {
 		color?: [number, number, number, number];
 		radius?: number;
