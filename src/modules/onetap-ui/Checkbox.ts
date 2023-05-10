@@ -50,13 +50,6 @@ export interface CheckboxOptions<N extends string> {
 
 export interface CheckboxStructure<N extends string> {
 	/**
-	 * Значение
-	 *
-	 * @type {0 | 1}
-	 */
-	value: 0 | 1;
-
-	/**
 	 * ---
 	 * @example
 	 * ```ts
@@ -216,11 +209,56 @@ export interface CheckboxStructure<N extends string> {
 	CheckCallback: () => Checkbox<N>;
 }
 
-export class Checkbox<N extends string> implements CheckboxOptions<N>, CheckboxStructure<N> {
-	public name: N;
-	public readonly path: string[];
-	public value: 0 | 1 = 0;
-	public callbackFn: CallbackFunction;
+export class Checkbox<N extends string> implements CheckboxStructure<N> {
+	/**
+	 * Имя
+	 *
+	 * @type {string}
+	 */
+	private readonly name: N;
+
+	/**
+	 * Путь
+	 *
+	 * @type {string[]}
+	 */
+	private readonly path: string[];
+
+	/**
+	 * Состояние для Callback
+	 *
+	 * @type {0 | 1}
+	 */
+	private value: 0 | 1 = 0;
+
+	/**
+	 * Callback функция которая срабатывает при изменении значения.
+	 *
+	 * ---
+	 * @example
+	 * ```ts
+	 * const subtab = UI.AddSubTab(["Config", "SUBTAB_MGR"], "Test");
+	 * const checkbox = new Checkbox({
+	 *     name: "Hello",
+	 *     path: ["Config", "Test", "Test"],
+	 *     callbackFn: function (checkbox) {
+	 *         Cheat.Print("Current value: " + checkbox.GetValue() + "\n");
+	 *     }
+	 * }).Create();
+	 *
+	 * const on_Draw = function() {
+	 *     checkbox.CheckCallback();
+	 * };
+	 *
+	 * Cheat.RegisterCallback("Draw", "on_Draw");
+	 * ```
+	 * ---
+	 *
+	 * @param {Checkbox<N>} checkbox чекбокс на который нажимают.
+	 * @type {CallbackFunction}
+	 * @returns {any}
+	 */
+	private callbackFn: CallbackFunction;
 
 	constructor(options: CheckboxOptions<N>) {
 		this.name = options.name;

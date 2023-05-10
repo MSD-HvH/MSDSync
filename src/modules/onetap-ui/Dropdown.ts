@@ -14,8 +14,6 @@ export interface DropdownOptions<N extends string, E extends string, A extends E
 }
 
 export interface DropdownStructure<N extends string, E extends string, A extends E[]> {
-	value: number;
-
 	Create: () => Dropdown<N, E, A>;
 
 	GetPath: () => string[];
@@ -41,14 +39,12 @@ export interface DropdownStructure<N extends string, E extends string, A extends
 	CheckCallback: () => Dropdown<N, E, A>;
 }
 
-export class Dropdown<N extends string, E extends string, A extends E[]>
-	implements DropdownOptions<N, E, A>, DropdownStructure<N, E, A>
-{
-	public name: N;
-	public elements: A;
-	public readonly path: string[];
-	public value: number = 0;
-	public callbackFn: CallbackFunction;
+export class Dropdown<N extends string, E extends string, A extends E[]> implements DropdownStructure<N, E, A> {
+	private readonly name: N;
+	private elements: A;
+	private readonly path: string[];
+	private value: number = 0;
+	private callbackFn: CallbackFunction;
 
 	constructor(options: DropdownOptions<N, E, A>) {
 		this.name = options.name;
