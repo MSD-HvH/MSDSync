@@ -1,6 +1,6 @@
 // TODO: JSDoc
 
-export interface WindowOptions {
+declare interface WindowOptions {
 	/**
 	 * Расположение по оси X
 	 *
@@ -147,15 +147,6 @@ export class Window {
 		return this;
 	};
 
-	public readonly toJSON = (): WindowOptions => {
-		return {
-			x: this.x,
-			y: this.y,
-			width: this.width,
-			height: this.height,
-		};
-	};
-
 	public readonly IsInBouds = (options: WindowOptions & { size_included?: boolean }): boolean => {
 		const { x, y, width, height } = options;
 		const size_included = options.size_included || false;
@@ -163,5 +154,14 @@ export class Window {
 		return size_included
 			? this.x >= x && this.y >= y && this.x + this.width <= x + width && this.y + this.height <= y + height
 			: this.x + this.width >= x && this.y + this.height >= y && this.x <= x + width && this.y <= y + height;
+	};
+
+	public readonly toJSON = (): WindowOptions => {
+		return {
+			x: this.x,
+			y: this.y,
+			width: this.width,
+			height: this.height,
+		};
 	};
 }
