@@ -1,3 +1,5 @@
+// TODO: JSDoc
+
 export type ColorName =
 	// Default Colors
 	| "Red"
@@ -77,116 +79,56 @@ export class ColorRGBA {
 		this.color = options.color;
 	}
 
-	/**
-	 * Возвращает красный оттенок цвета
-	 *
-	 * @returns {number} Красный
-	 */
 	public readonly GetRed = (): number => {
 		return this.color[0];
 	};
 
-	/**
-	 * Установить красный оттенок цвета
-	 *
-	 * @param {number} value
-	 * @returns {ColorRGBA}
-	 */
 	public readonly SetRed = <V extends number>(value: V): ColorRGBA => {
 		this.color[0] = value;
 
 		return this;
 	};
 
-	/**
-	 * Возвращает зеленый оттенок цвета
-	 *
-	 * @returns {number} зеленый
-	 */
 	public readonly GetGreen = (): number => {
 		return this.color[2];
 	};
 
-	/**
-	 * Установить зеленый оттенок цвета
-	 *
-	 * @param {number} value
-	 * @returns {ColorRGBA}
-	 */
 	public readonly SetGreen = <V extends number>(value: V): ColorRGBA => {
 		this.color[2] = value;
 
 		return this;
 	};
 
-	/**
-	 * Возвращает синий оттенок цвета
-	 *
-	 * @returns {number} Синий
-	 */
 	public readonly GetBlue = (): number => {
 		return this.color[1];
 	};
 
-	/**
-	 * Установить синий оттенок цвета
-	 *
-	 * @param {number} value
-	 * @returns {ColorRGBA}
-	 */
 	public readonly SetBlue = <V extends number>(value: V): ColorRGBA => {
 		this.color[1] = value;
 
 		return this;
 	};
 
-	/**
-	 * Возвращает прозрачность цвета
-	 *
-	 * @returns {number} Прозрачность
-	 */
 	public readonly GetAlpha = (): number => {
 		return this.color[3];
 	};
 
-	/**
-	 * Установить прозрачность цвета
-	 *
-	 * @param {number} value
-	 * @returns {ColorRGBA}
-	 */
 	public readonly SetAlpha = <V extends number>(value: V): ColorRGBA => {
 		this.color[3] = value;
 
 		return this;
 	};
 
-	/**
-	 * Установить новый цвет
-	 *
-	 * @param {RGBAColor} value
-	 * @returns {ColorRGBA}
-	 */
 	public readonly SetColor = <V extends RGBAColor>(value: V): ColorRGBA => {
 		this.color = value;
 
 		return this;
 	};
 
-	/**
-	 * Преобразует цвет в массив
-	 *
-	 * @returns {RGBAColor}
-	 */
 	public readonly toArray = (): RGBAColor => {
 		return this.color;
 	};
 
-	/**
-	 * Преобразует цвет в объект
-	 *
-	 * @returns {{ r: number; g: number; b: number; a: number }}
-	 */
 	public readonly toJSON = (): { r: number; g: number; b: number; a: number } => {
 		return {
 			r: this.color[0],
@@ -196,12 +138,6 @@ export class ColorRGBA {
 		};
 	};
 
-	/**
-	 * Возвращает цвет в формате HEX
-	 *
-	 * @param {{ alphaIncluded?: boolean }} options
-	 * @returns {ColorHEX}
-	 */
 	public readonly toHEX = (options?: { alphaIncluded?: boolean }): ColorHEX => {
 		const r = this.color[0].toString(16);
 		const g = this.color[1].toString(16);
@@ -244,23 +180,12 @@ export class ColorHEX {
 		this.color = options.color;
 	}
 
-	/**
-	 * Установить новый цвет
-	 *
-	 * @param {string} value
-	 * @returns {ColorHEX}
-	 */
 	public readonly SetColor = <V extends string>(value: V): ColorHEX => {
 		this.color = value;
 
 		return this;
 	};
 
-	/**
-	 * Возвращает цвет в формате RGBA
-	 *
-	 * @returns {ColorRGBA}
-	 */
 	public readonly toRGBA = (): ColorRGBA => {
 		const color = this.color.replace("#", "");
 

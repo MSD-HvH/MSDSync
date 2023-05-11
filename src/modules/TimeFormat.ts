@@ -1,3 +1,5 @@
+// TODO: JSDoc
+
 export type Weekday = "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday" | "Saturday" | "Sunday";
 export type Month =
 	| "January"
@@ -96,9 +98,22 @@ export interface CurrentTime {
 	timezone: string;
 }
 
+/**
+ * @class
+ */
 export class TimeFormat {
+	/**
+	 * Дата
+	 *
+	 * @private
+	 * @type {Date}
+	 */
 	private date: Date;
 
+	/**
+	 * @constructor
+	 * @param {Date} date
+	 */
 	constructor(date: Date = new Date()) {
 		this.date = date;
 	}
