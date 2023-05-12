@@ -1,5 +1,3 @@
-// TODO: JSDoc
-
 export type ColorName =
 	// Default Colors
 	| "Red"

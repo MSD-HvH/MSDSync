@@ -1,5 +1,3 @@
-// TODO: JSDoc
-
 declare interface WindowOptions {
 	/**
 	 * Расположение по оси X

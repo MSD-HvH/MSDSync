@@ -1,5 +1,3 @@
-// TODO: JSDoc, Relative Timestamp
-
 export type Weekday = "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday" | "Saturday" | "Sunday";
 export type Month =
 	| "January"
