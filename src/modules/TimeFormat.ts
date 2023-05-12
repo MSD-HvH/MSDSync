@@ -1,4 +1,4 @@
-// TODO: JSDoc
+// TODO: JSDoc, Relative Timestamp
 
 export type Weekday = "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday" | "Saturday" | "Sunday";
 export type Month =
@@ -30,6 +30,50 @@ export const months: Month[] = [
 	"November",
 	"December",
 ];
+
+export const TimestampStyles = {
+	/**
+	 * Short time format, consisting of hours and minutes.
+	 *
+	 * @example `16:20`
+	 */
+	ShortTime: "t",
+
+	/**
+	 * Long time format, consisting of hours, minutes, and seconds.
+	 *
+	 * @example `16:20:30`
+	 */
+	LongTime: "T",
+
+	/**
+	 * Short date format, consisting of day, month, and year.
+	 *
+	 * @example `20/04/2021`
+	 */
+	ShortDate: "d",
+
+	/**
+	 * Long date format, consisting of day, month, and year.
+	 *
+	 * @example `20 April 2021`
+	 */
+	LongDate: "D",
+
+	/**
+	 * Short date-time format, consisting of short date and short time formats.
+	 *
+	 * @example `20 April 2021 16:20`
+	 */
+	ShortDateTime: "f",
+
+	/**
+	 * Long date-time format, consisting of long date and short time formats.
+	 *
+	 * @example `Tuesday, 20 April 2021 16:20`
+	 */
+	LongDateTime: "F",
+} as const satisfies Record<string, string>;
 
 export interface CurrentDate {
 	/**
@@ -128,44 +172,44 @@ export class TimeFormat {
 		return this;
 	};
 
-	public readonly GetDay = (): number => {
-		return this.date.getDate();
+	public readonly GetDay = (date: Date = this.date): number => {
+		return date.getDate();
 	};
 
-	public readonly GetMonthIndex = (): number => {
-		return this.date.getMonth();
+	public readonly GetMonthIndex = (date: Date = this.date): number => {
+		return date.getMonth();
 	};
 
-	public readonly GetMonth = (): Month => {
-		return months[this.GetMonthIndex()] as Month;
+	public readonly GetMonth = (date: Date = this.date): Month => {
+		return months[this.GetMonthIndex(date)] as Month;
 	};
 
-	public readonly GetYear = (): number => {
-		return this.date.getFullYear();
+	public readonly GetYear = (date: Date = this.date): number => {
+		return date.getFullYear();
 	};
 
-	public readonly GetWeekdayIndex = (): number => {
-		return this.date.getDay() === 0 ? 7 : this.date.getDay();
+	public readonly GetWeekdayIndex = (date: Date = this.date): number => {
+		return date.getDay() === 0 ? 7 : date.getDay();
 	};
 
-	public readonly GetWeekday = (): Weekday => {
-		return weekdays[this.date.getDay()] as Weekday;
+	public readonly GetWeekday = (date: Date = this.date): Weekday => {
+		return weekdays[date.getDay()] as Weekday;
 	};
 
-	public readonly GetHours = (): string => {
-		return this.date.toTimeString().substring(0, 2);
+	public readonly GetHours = (date: Date = this.date): string => {
+		return date.toTimeString().substring(0, 2);
 	};
 
-	public readonly GetMinutes = (): string => {
-		return this.date.toTimeString().substring(3, 5);
+	public readonly GetMinutes = (date: Date = this.date): string => {
+		return date.toTimeString().substring(3, 5);
 	};
 
-	public readonly GetSeconds = (): string => {
-		return this.date.toTimeString().substring(6, 8);
+	public readonly GetSeconds = (date: Date = this.date): string => {
+		return date.toTimeString().substring(6, 8);
 	};
 
-	public readonly GetTimezoneOffset = (): string => {
-		const timezoneOffset: number = this.date.getTimezoneOffset();
+	public readonly GetTimezoneOffset = (date: Date = this.date): string => {
+		const timezoneOffset: number = date.getTimezoneOffset();
 		const offset: number = Math.abs(timezoneOffset);
 		const offsetOperator: "+" | "-" = timezoneOffset < 0 ? "+" : "-";
 		const offsetHours: number = Math.floor(offset / 60);
@@ -173,23 +217,62 @@ export class TimeFormat {
 		return offsetOperator + offsetHours;
 	};
 
-	public readonly GetCurrentDate = (): CurrentDate => {
-		const day: number = this.GetDay();
-		const month_number: number = this.GetMonthIndex();
-		const month: Month = this.GetMonth();
-		const year: number = this.GetYear();
+	public readonly GetCurrentDate = (date: Date = this.date): CurrentDate => {
+		const day: number = this.GetDay(date);
+		const month_number: number = this.GetMonthIndex(date);
+		const month: Month = this.GetMonth(date);
+		const year: number = this.GetYear(date);
 
-		const weekday: Weekday = this.GetWeekday();
+		const weekday: Weekday = this.GetWeekday(date);
 
 		return { day, month_number, month, year, weekday };
 	};
 
-	public readonly GetCurrentTime = (): CurrentTime => {
-		const hours: string = this.GetHours();
-		const minutes: string = this.GetMinutes();
-		const seconds: string = this.GetSeconds();
-		const timezone: string = this.GetTimezoneOffset();
+	public readonly GetCurrentTime = (date: Date = this.date): CurrentTime => {
+		const hours: string = this.GetHours(date);
+		const minutes: string = this.GetMinutes(date);
+		const seconds: string = this.GetSeconds(date);
+		const timezone: string = this.GetTimezoneOffset(date);
 
 		return { hours, minutes, seconds, timezone };
+	};
+
+	public readonly Timestamp = (style: keyof typeof TimestampStyles, date: Date = this.date): string => {
+		const currentTime = this.GetCurrentTime(date);
+		const currentDate = this.GetCurrentDate(date);
+		const timestampStyle = TimestampStyles[style] || "D";
+
+		let str: string;
+
+		switch (timestampStyle) {
+			case "t":
+				str = [currentTime.hours, currentTime.minutes].join(":");
+				break;
+			case "T":
+				str = [currentTime.hours, currentTime.minutes, currentTime.seconds].join(":");
+				break;
+			case "d":
+				str = [currentDate.day, currentDate.month_number + 1, currentDate.year].join("/");
+				break;
+			case "D":
+				str = [currentDate.day, currentDate.month, currentDate.year].join(" ");
+				break;
+			case "f":
+				str =
+					[currentDate.day, currentDate.month, currentDate.year].join(" ") +
+					" " +
+					[currentTime.hours, currentTime.minutes].join(":");
+				break;
+			case "F":
+				str =
+					currentDate.weekday +
+					", " +
+					[currentDate.day, currentDate.month, currentDate.year].join(" ") +
+					" " +
+					[(currentTime.hours, currentTime.minutes)].join(":");
+				break;
+		}
+
+		return str;
 	};
 }
