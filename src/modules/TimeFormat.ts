@@ -255,11 +255,11 @@ export class TimeFormat {
 				str = [currentDate.day, currentDate.month_number + 1, currentDate.year].join("/");
 				break;
 			case "D":
-				str = [currentDate.day, currentDate.month, currentDate.year].join(" ");
+				str = [currentDate.day, currentDate.month + ",", currentDate.year].join(" ");
 				break;
 			case "f":
 				str =
-					[currentDate.day, currentDate.month, currentDate.year].join(" ") +
+					[currentDate.day, currentDate.month + ",", currentDate.year].join(" ") +
 					" " +
 					[currentTime.hours, currentTime.minutes].join(":");
 				break;
@@ -269,7 +269,7 @@ export class TimeFormat {
 					", " +
 					[currentDate.day, currentDate.month, currentDate.year].join(" ") +
 					" " +
-					[(currentTime.hours, currentTime.minutes)].join(":");
+					[currentTime.hours, currentTime.minutes].join(":");
 				break;
 		}
 
