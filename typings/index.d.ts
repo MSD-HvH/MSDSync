@@ -1,3 +1,5 @@
+import { Checkbox, ColorPicker, Dropdown } from "src/modules/onetap-ui/index.js";
+
 declare interface WindowOptions {
 	/**
 	 * Расположение по оси X
@@ -28,4 +30,4 @@ declare interface WindowOptions {
 	height: number;
 }
 
-declare type CallbackFunction<E> = <R>(element: E, ...args: any[]) => void;
+declare type CallbackFunction<E> = (element: E, ...args: any[]) => void;
