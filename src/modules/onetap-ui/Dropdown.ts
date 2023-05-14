@@ -1,7 +1,9 @@
 import { BaseElement } from "./index.js";
 
-export class Dropdown<N extends string, P extends string[]> extends BaseElement<N, P, number, Dropdown<N, P>> {
+export class Dropdown<N extends string, P extends string[]> extends BaseElement<N, P, Dropdown<N, P>> {
+	private last_value: number;
 	private elements: string[];
+	private callbackFn: CallbackFunction<Dropdown<N, P>>;
 
 	constructor(
 		options: { name: N; path: P; elements: string[] },
@@ -9,10 +11,24 @@ export class Dropdown<N extends string, P extends string[]> extends BaseElement<
 	) {
 		UI.AddDropdown.call(null, options.path, options.name, options.elements, 1);
 
-		super(options, callbackFn);
+		super(options);
 
+		this.last_value = this.GetValue();
 		this.elements = options.elements;
+		this.callbackFn = callbackFn;
 	}
+
+	public readonly GetValue = (): 0 | 1 => {
+		return UI.GetValue(this.GetPath()) as 0 | 1;
+	};
+
+	public readonly SetValue = <V extends 0 | 1>(value: V): Dropdown<N, P> => {
+		UI.SetValue(this.GetPath(), value);
+
+		this.last_value = value;
+
+		return this;
+	};
 
 	public readonly GetElements = (): string[] => {
 		return this.elements;
@@ -43,5 +59,15 @@ export class Dropdown<N extends string, P extends string[]> extends BaseElement<
 		const value = this.GetValue();
 
 		return value === index;
+	};
+
+	public readonly CheckCallback = <A extends any[]>(...args: A) => {
+		if (this.last_value != this.GetValue()) {
+			this.callbackFn(this, ...args);
+
+			this.last_value = this.GetValue();
+		}
+
+		return this;
 	};
 }
