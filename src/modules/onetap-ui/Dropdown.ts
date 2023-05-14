@@ -61,7 +61,13 @@ export class Dropdown<N extends string, P extends string[]> extends BaseElement<
 		return value === index;
 	};
 
-	public readonly CheckCallback = <A extends any[]>(...args: A) => {
+	public readonly AddCallback = <C extends CallbackFunction<Dropdown<N, P>>>(callbackFn: C): Dropdown<N, P> => {
+		this.callbackFn = callbackFn;
+
+		return this;
+	};
+
+	public readonly CheckCallback = <A extends any[]>(...args: A): Dropdown<N, P> => {
 		if (this.last_value != this.GetValue()) {
 			this.callbackFn(this, ...args);
 

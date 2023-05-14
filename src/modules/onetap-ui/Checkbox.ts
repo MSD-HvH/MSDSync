@@ -25,7 +25,13 @@ export class Checkbox<N extends string, P extends string[]> extends BaseElement<
 		return this;
 	};
 
-	public readonly CheckCallback = <A extends any[]>(...args: A) => {
+	public readonly AddCallback = <C extends CallbackFunction<Checkbox<N, P>>>(callbackFn: C): Checkbox<N, P> => {
+		this.callbackFn = callbackFn;
+
+		return this;
+	};
+
+	public readonly CheckCallback = <A extends any[]>(...args: A): Checkbox<N, P> => {
 		if (this.last_value != this.GetValue()) {
 			this.callbackFn(this, ...args);
 
