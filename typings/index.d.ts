@@ -1,5 +1,3 @@
-import { Checkbox, ColorPicker, Dropdown } from "src/modules/onetap-ui/index.js";
-
 declare interface WindowOptions {
 	/**
 	 * Расположение по оси X
