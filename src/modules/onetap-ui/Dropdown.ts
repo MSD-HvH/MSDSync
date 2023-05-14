@@ -1,4 +1,4 @@
-import { BaseElement } from "./index.js";
+import { BaseElement } from "./BaseElement.js";
 
 export class Dropdown<N extends string, P extends string[]> extends BaseElement<N, P, Dropdown<N, P>> {
 	private last_value: number;

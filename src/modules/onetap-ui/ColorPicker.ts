@@ -30,7 +30,7 @@ export class ColorPicker<N extends string, P extends string[]> extends BaseEleme
 	};
 
 	public readonly CheckCallback = <A extends any[]>(...args: A): ColorPicker<N, P> => {
-		if (!Input.IsKeyPressed(0x01) && this.last_value.toString() !== this.GetColor().toString()) {
+		if (!Input.IsKeyPressed(0x01) && this.last_value.toString() != this.GetColor().toString()) {
 			this.callbackFn(this, ...args);
 
 			this.last_value = this.GetColor();

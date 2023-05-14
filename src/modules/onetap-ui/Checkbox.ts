@@ -1,4 +1,4 @@
-import { BaseElement } from "./index.js";
+import { BaseElement } from "./BaseElement.js";
 
 export class Checkbox<N extends string, P extends string[]> extends BaseElement<N, P, Checkbox<N, P>> {
 	private last_value: 0 | 1;
