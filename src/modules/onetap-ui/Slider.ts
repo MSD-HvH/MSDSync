@@ -8,7 +8,7 @@ export class Slider<N extends string, P extends string[]> extends BaseElement<N,
 	private callbackFn: CallbackFunction<Slider<N, P>>;
 
 	constructor(
-		options: { name: N; path: P; min: number; max: number; type?: "Float" | "Int" },
+		options: { name: N; path: P; min: number; max: number; type: "Float" | "Int" },
 		callbackFn: CallbackFunction<Slider<N, P>> = () => {}
 	) {
 		UI[("AddSlider" + options.type) as `AddSlider${"Int" | "Float"}`].call(
