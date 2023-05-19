@@ -8,7 +8,7 @@ export class ChimeraDropdown<N extends string, P extends string[]> extends Dropd
 		super(options);
 
 		this.window = options.window;
-		// this.SetEnabled(0);
+		this.SetEnabled(0);
 	}
 
 	public readonly GetWindow = (): Window => {
