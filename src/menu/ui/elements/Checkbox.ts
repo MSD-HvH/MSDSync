@@ -1,7 +1,6 @@
 import { Checkbox, InputSystem, Window } from "../../../modules/index.js";
 
 export class ChimeraCheckbox<N extends string, P extends string[]> extends Checkbox<N, P> {
-	private timeout: number = 0;
 	private readonly window: Window;
 
 	constructor(options: { name: N; path: P } & { window: Window }) {
@@ -51,12 +50,8 @@ export class ChimeraCheckbox<N extends string, P extends string[]> extends Check
 	};
 
 	public readonly HandleClick = (options: { input: InputSystem; animate?: boolean }) => {
-		if (options.input.IsInBounds(this.window.toJSON())) {
-			if (options.input.IsDown(0x01) && Globals.Curtime() > this.timeout + 0.05) {
-				this.SetValue(Number(!this.GetValue()) as 0 | 1);
-
-				this.timeout = Globals.Curtime() + 0.05;
-			}
+		if (options.input.IsInBounds(this.window.toJSON()) && options.input.IsPressed(0x01)) {
+			this.SetValue(Number(!this.GetValue()) as 0 | 1);
 		}
 	};
 }

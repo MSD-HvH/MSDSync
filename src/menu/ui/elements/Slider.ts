@@ -49,28 +49,30 @@ export class ChimeraSlider<N extends string, P extends string[]> extends Slider<
 	};
 
 	public readonly HandleClick = (options: { input: InputSystem }) => {
-		if (options.input.IsInBounds(this.window.toJSON()) && options.input.IsDown(0x01)) {
-			const { x, y, width, height } = this.window.toJSON();
+		const padding = 4;
+		const { x, y, width, height } = this.window.toJSON();
 
-			const padding = 4;
-			const percent = (width - padding * 2) / Math.abs(this.GetMinimumValue() - this.GetMaximumValue());
-
-			if (
-				options.input.IsInBounds({
+		if (
+			options.input.IsInBounds(
+				{
 					x: x + padding,
 					y: y + padding,
 					width: width - padding * 2,
 					height: height - padding * 2,
-				})
-			) {
-				const value = Clamp(
-					Math.round((options.input.GetMouseX() - (x + padding)) / percent + this.GetMinimumValue()),
-					this.GetMinimumValue(),
-					this.GetMaximumValue()
-				);
+				},
+				options.input.GetHoldPos()
+			) &&
+			options.input.IsDown(0x01)
+		) {
+			const percent = (width - padding * 2) / Math.abs(this.GetMinimumValue() - this.GetMaximumValue());
 
-				this.SetValue(value);
-			}
+			const value = Clamp(
+				Math.round((options.input.GetMouseX() - (x + padding)) / percent + this.GetMinimumValue()),
+				this.GetMinimumValue(),
+				this.GetMaximumValue()
+			);
+
+			this.SetValue(value);
 		}
 	};
 }
