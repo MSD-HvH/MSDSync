@@ -18,11 +18,11 @@ export class Dropdown<N extends string, P extends string[]> extends BaseElement<
 		this.callbackFn = callbackFn;
 	}
 
-	public readonly GetValue = (): 0 | 1 => {
-		return UI.GetValue(this.GetPath()) as 0 | 1;
+	public readonly GetValue = (): number => {
+		return UI.GetValue(this.GetPath());
 	};
 
-	public readonly SetValue = <V extends 0 | 1>(value: V): Dropdown<N, P> => {
+	public readonly SetValue = <V extends number>(value: V): Dropdown<N, P> => {
 		UI.SetValue(this.GetPath(), value);
 
 		this.last_value = value;
