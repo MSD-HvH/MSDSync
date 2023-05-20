@@ -4,6 +4,8 @@
 		"baseUrl": "./",
 
 		"strict": true,
+		"checkJs": true,
+		"allowJs": true,
 		"noUncheckedIndexedAccess": true,
 		"noUnusedParameters": true,
 		"allowUnreachableCode": false,
