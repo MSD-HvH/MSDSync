@@ -10,8 +10,18 @@ export class InputSystem {
 	 */
 	private lastPressedKeys: boolean[] = [];
 
+	/**
+	 * Позиция мышки
+	 *
+	 * @type {[number, number]}
+	 */
 	private mousePos: [number, number] = [0, 0];
 
+	/**
+	 * Позиция мышки до момента, когда была нажата клавиша
+	 *
+	 * @type {[number, number]}
+	 */
 	private mouseCachePos: [number, number] = [0, 0];
 
 	/**
