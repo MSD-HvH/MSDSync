@@ -76,6 +76,7 @@ export class ChimeraMultiDropdown<N extends string, P extends string[]> extends 
 	};
 
 	public readonly HandleClick = (options: { input: InputSystem }): void => {
+		// #region Открытие/закрытие dropdown
 		const { window, state, SetState, GetState, SetValue, GetValue, GetElements } = this;
 		const { IsInBounds, IsPressed } = options.input;
 
@@ -83,7 +84,9 @@ export class ChimeraMultiDropdown<N extends string, P extends string[]> extends 
 		const isPressed = IsPressed(0x01);
 
 		if (isInBounds && isPressed) SetState(!GetState());
+		// #endregion
 
+		// #region Выбор элемента
 		if (!state) return;
 
 		const elements = GetElements();
@@ -98,5 +101,6 @@ export class ChimeraMultiDropdown<N extends string, P extends string[]> extends 
 				SetValue(GetValue() ^ (1 << i));
 			}
 		});
+		// #endregion
 	};
 }

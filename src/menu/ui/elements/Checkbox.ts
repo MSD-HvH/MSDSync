@@ -45,10 +45,12 @@ export class ChimeraCheckbox<N extends string, P extends string[]> extends Check
 	};
 
 	public readonly HandleClick = (options: { input: InputSystem }) => {
+		// #region Переменные
 		const { IsInBounds, IsPressed } = options.input;
 		const { window, GetValue, SetValue } = this;
 		const isInBounds = IsInBounds(window.toJSON());
 		const isPressed = IsPressed(0x01);
+		// #endregion
 
 		if (isInBounds && isPressed) {
 			const value: boolean = !GetValue();

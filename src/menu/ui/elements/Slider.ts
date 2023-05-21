@@ -44,6 +44,7 @@ export class ChimeraSlider<N extends string, P extends string[]> extends Slider<
 	};
 
 	public readonly HandleClick = (options: { input: InputSystem }) => {
+		// #region Переменные
 		const { IsInBounds, GetHoldPos, IsDown, GetMouseX } = options.input;
 		const { window, GetMinimumValue, GetMaximumValue, SetValue } = this;
 		const { x, y, width, height } = window.toJSON();
@@ -59,6 +60,7 @@ export class ChimeraSlider<N extends string, P extends string[]> extends Slider<
 
 		const holdPos = GetHoldPos();
 		const isInBounds = IsInBounds(zone, holdPos);
+		// #endregion
 
 		if (isInBounds && IsDown(0x01)) {
 			const percent = (width - padding * 2) / Math.abs(GetMinimumValue() - GetMaximumValue());
