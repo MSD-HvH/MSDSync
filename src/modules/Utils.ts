@@ -37,10 +37,10 @@ export const HSVtoRGB = (h: number, s: number, v: number) => {
 };
 
 export const RGBToHSV = function (color: RGBAColor): [number, number, number] {
+	const r = color[0];
 	const g = color[1];
 	const b = color[2];
 	const a = color[3];
-	const r = color[0];
 
 	const max = Math.max(r, g, b);
 	const min = Math.min(r, g, b);
