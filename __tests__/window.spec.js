@@ -13,6 +13,8 @@ const on_Draw = function () {
 };
 
 const to_Print = (function () {
+	Cheat.Print("\n---------- Window Tests ---------- \n\n");
+
 	const toPrint = [
 		"Current X position: " + window.GetX(),
 		"Current Y position: " + window.GetY(),
@@ -20,9 +22,9 @@ const to_Print = (function () {
 		"Current Height: " + window.GetHeight(),
 	];
 
-	toPrint.forEach(function (value) {
-		Cheat.Print(value + "\n");
-	});
+	Cheat.Print(toPrint.join("\n"));
+
+	Cheat.Print("\n\n---------- Window Tests End ---------- \n\n");
 })();
 
 Cheat.RegisterCallback("Draw", "on_Draw");
