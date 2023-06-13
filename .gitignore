@@ -7,7 +7,8 @@ logs
 npm-debug.log*
 
 # JS Files
-**/*.js
+src/**/*.js
+test.js
 
 # Test Files
 test.ts
