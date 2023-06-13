@@ -32,7 +32,7 @@ const to_Print = (function () {
 		"Current seconds: " + seconds,
 		"Current timezone: " + timezone + "\n",
 		"Current date: " + [currentDate.day, currentDate.month, currentDate.year, currentDate.weekday].join(" "),
-		"Current time: " + [currentTime.hours, currentTime.minutes, currentTime.seconds].join(":"),
+		"Current time: " + [currentTime.hours, currentTime.minutes, currentTime.seconds].join(":") + "\n",
 	];
 
 	Cheat.Print(toPrint.join("\n"));
