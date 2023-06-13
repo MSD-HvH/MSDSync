@@ -5,8 +5,6 @@
 	"typescript.preferences.importModuleSpecifierEnding": "js",
 	"typescript.preferences.importModuleSpecifier": "non-relative",
 
-	"eslint.validate": ["javascript", "typescript"],
-
 	"npm.packageManager": "yarn",
 
 	"files.insertFinalNewline": true,
