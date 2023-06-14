@@ -7,3 +7,5 @@ declare interface WindowOptions {
 
 	height: number;
 }
+
+declare type CallbackFunction<E> = (element: E, ...args: any[]) => void;

@@ -4,3 +4,5 @@ export * from "./Easings.js";
 export * from "./InputSystem.js";
 export * from "./TimeFormat.js";
 export * from "./Window.js";
+
+export * from "./onetap-ui/index.js";
