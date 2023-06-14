@@ -1,6 +1,6 @@
-/// <reference path="../typings/onetap.d.ts"/>
+/// <reference path="../../typings/onetap.d.ts"/>
 
-const TimeFormat = require("../src/modules/TimeFormat.js").TimeFormat;
+const TimeFormat = require("../../src/modules/TimeFormat.js").TimeFormat;
 const timeFormatter = new TimeFormat();
 
 const day = timeFormatter.GetDay();

@@ -1,6 +1,6 @@
-/// <reference path="../typings/onetap.d.ts"/>
+/// <reference path="../../typings/onetap.d.ts"/>
 
-const Window = require("../src/modules/Window.js").Window;
+const Window = require("../../src/modules/Window.js").Window;
 const window = new Window({ x: 100, y: 100, width: 100, height: 100 });
 
 const on_Draw = function () {
