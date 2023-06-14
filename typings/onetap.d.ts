@@ -512,9 +512,9 @@ declare namespace UI {
 		Subtab: S,
 		Area: string,
 		name: N
-	): Color | number[];
-	function GetColor<T extends keyof Subtabs, N extends string>(Tab: T, Area: string, name: N): Color | number[];
-	function GetColor<N extends string>(Area: string, name: N): Color | number[];
+	): RGBAColor;
+	function GetColor<T extends keyof Subtabs, N extends string>(Tab: T, Area: string, name: N): RGBAColor;
+	function GetColor<N extends string>(Area: string, name: N): RGBAColor;
 
 	/**
 	 * Returns a string representation of an item's current value.
