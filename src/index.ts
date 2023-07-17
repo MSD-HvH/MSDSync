@@ -1,3 +1,5 @@
-import { Hello } from "src/export.js";
+const test = () => {
+	Cheat.Print("Hello world \n");
+};
 
-Cheat.Print(Hello + "\n");
+test();
