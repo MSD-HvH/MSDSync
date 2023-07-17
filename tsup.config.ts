@@ -8,7 +8,6 @@ export default defineConfig({
 	entry: [`packages/${IS_V3 ? "v3" : "v4"}/src/index.ts`],
 	format: ["cjs", "esm"],
 	sourcemap: true,
-	bundle: false,
 	clean: true,
 	dts: true,
 	target: "es5",
