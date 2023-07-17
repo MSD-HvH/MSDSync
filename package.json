@@ -21,8 +21,9 @@
 	},
 	"packageManager": "yarn@3.5.1",
 	"typings": "./typings",
-	"dependencies": {
+	"devDependencies": {
 		"prettier": "^2.8.8",
+		"tsup": "^7.1.0",
 		"typescript": "^5.0.4"
 	}
 }
