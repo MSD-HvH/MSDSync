@@ -1,3 +1,5 @@
-import { Hello } from "./test2.js";
+import { Window } from "./modules/index.js";
 
-Cheat.Print(`${Hello} \n`);
+const window = new Window();
+
+Cheat.Print(JSON.stringify(window.toJSON(), null, 4));
