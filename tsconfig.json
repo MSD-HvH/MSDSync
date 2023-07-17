@@ -26,6 +26,6 @@
 		"target": "ES5"
 	},
 
-	"include": ["test.ts", "typings", "src"],
-	"exclude": ["dist", "**/dist/*", "node_modules", "**/node_modules/*"]
+	"include": ["typings"],
+	"exclude": ["dist", "node_modules"]
 }
