@@ -6,6 +6,7 @@
 		"strict": true,
 		"noUncheckedIndexedAccess": true,
 		"noUnusedParameters": true,
+		"allowJs": true,
 		"allowUnreachableCode": false,
 		"allowUnusedLabels": false,
 		"allowSyntheticDefaultImports": true,
