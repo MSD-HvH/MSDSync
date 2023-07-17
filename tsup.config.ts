@@ -6,7 +6,7 @@ export default defineConfig({
 	format: ["cjs", "esm"],
 	sourcemap: true,
 	clean: true,
-	dts: true,
+	// dts: true,
 	bundle: false,
 	outDir: "C:/Games/Steam/steamapps/common/2020/ot/scripts",
 });
