@@ -22,6 +22,7 @@
 	"packageManager": "yarn@3.5.1",
 	"typings": "./typings",
 	"devDependencies": {
+		"@swc/core": "^1.3.69",
 		"prettier": "^2.8.8",
 		"tsup": "^7.1.0",
 		"typescript": "^5.0.4"
