@@ -6,10 +6,10 @@ export interface WindowOptions {
 }
 
 export class Window {
-	private x: number;
-	private y: number;
-	private width: number;
-	private height: number;
+	public x: number;
+	public y: number;
+	public width: number;
+	public height: number;
 
 	constructor(options?: Partial<WindowOptions>) {
 		this.x = options?.x || 10;
@@ -105,13 +105,22 @@ export class Window {
 		return this;
 	};
 
+	public readonly toJSON = (): WindowOptions => {
+		return {
+			x: this.x,
+			y: this.y,
+			width: this.width,
+			height: this.height,
+		};
+	};
+
 	public readonly IsInBouds = ({
 		x,
 		y,
 		width,
 		height,
 		size_included,
-	}: WindowOptions & { size_included?: boolean }): boolean => {
+	}: (WindowOptions | Window) & { size_included?: boolean }): boolean => {
 		return size_included || false
 			? this.x >= x && this.y >= y && this.x + this.width <= x + width && this.y + this.height <= y + height
 			: this.x + this.width >= x && this.y + this.height >= y && this.x <= x + width && this.y <= y + height;
