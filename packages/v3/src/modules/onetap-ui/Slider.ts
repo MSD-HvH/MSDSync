@@ -1,4 +1,4 @@
-import { BaseElement, type CallbackFunction } from "./BaseElement.js";
+import { BaseElement, type CallbackFunction } from "./base-element.js";
 
 export class Slider<N extends string> extends BaseElement<N, Slider<N>> {
 	private readonly min: number;

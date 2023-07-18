@@ -1,4 +1,4 @@
-import { BaseElement } from "./BaseElement.js";
+import { BaseElement } from "./base-element.js";
 
 export class Hotkey<N extends string, D extends string> extends BaseElement<N, Hotkey<N, D>> {
 	constructor(options: { name: N; display_name: D }) {

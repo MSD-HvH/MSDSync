@@ -1,4 +1,4 @@
-import { BaseElement, type CallbackFunction } from "./BaseElement.js";
+import { BaseElement, type CallbackFunction } from "./base-element.js";
 
 export class Checkbox<N extends string> extends BaseElement<N, Checkbox<N>> {
 	private last_value: 0 | 1;

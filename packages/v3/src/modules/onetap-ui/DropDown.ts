@@ -1,4 +1,4 @@
-import { BaseElement, type CallbackFunction } from "./BaseElement.js";
+import { BaseElement, type CallbackFunction } from "./base-element.js";
 
 export class Dropdown<N extends string> extends BaseElement<N, Dropdown<N>> {
 	private last_value: number;

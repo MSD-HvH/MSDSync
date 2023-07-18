@@ -1,4 +1,4 @@
-import { BaseElement, type CallbackFunction } from "./BaseElement.js";
+import { BaseElement, type CallbackFunction } from "./base-element.js";
 
 export class ColorPicker<N extends string> extends BaseElement<N, ColorPicker<N>> {
 	private last_value: RGBAColor;

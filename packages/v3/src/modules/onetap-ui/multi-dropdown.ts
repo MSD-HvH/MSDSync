@@ -1,4 +1,4 @@
-import { BaseElement, type CallbackFunction } from "./BaseElement.js";
+import { BaseElement, type CallbackFunction } from "./base-element.js";
 
 export class MultiDropdown<N extends string> extends BaseElement<N, MultiDropdown<N>> {
 	private last_value: number;
