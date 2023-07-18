@@ -1,3 +1,5 @@
+export * from "./onetap-ui/index.js";
+
 export * from "./color-module.js";
 export * from "./drag.js";
 export * from "./easings.js";

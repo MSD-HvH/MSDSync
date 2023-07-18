@@ -5,7 +5,7 @@ const { parsed } = config({}) as { parsed: { VERSION: "3" | "4" } };
 const IS_V3 = parsed.VERSION === "3";
 
 export default defineConfig({
-	entry: [`packages/${IS_V3 ? "v3" : "v4"}/src/index.ts`],
+	entry: [`packages/${IS_V3 ? "v3" : "v4"}/index.ts`],
 	format: ["cjs", "esm"],
 	sourcemap: true,
 	clean: true,
