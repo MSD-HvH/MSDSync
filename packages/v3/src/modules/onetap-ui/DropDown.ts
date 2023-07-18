@@ -6,7 +6,7 @@ export class Dropdown<N extends string> extends BaseElement<N, Dropdown<N>> {
 	private callbackFn: CallbackFunction<Dropdown<N>>;
 
 	constructor(options: { name: N; elements: string[] }, callbackFn: CallbackFunction<Dropdown<N>> = () => {}) {
-		UI.AddDropdown.call(null, options.name, options.elements);
+		UI.AddDropdown(options.name, options.elements);
 
 		super(options);
 

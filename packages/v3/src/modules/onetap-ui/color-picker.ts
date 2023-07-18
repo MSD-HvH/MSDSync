@@ -5,7 +5,7 @@ export class ColorPicker<N extends string> extends BaseElement<N, ColorPicker<N>
 	private callbackFn: CallbackFunction<ColorPicker<N>>;
 
 	constructor(options: { name: N }, callbackFn: CallbackFunction<ColorPicker<N>> = () => {}) {
-		UI.AddColorPicker.call(null, options.name);
+		UI.AddColorPicker(options.name);
 
 		super(options);
 

@@ -11,12 +11,7 @@ export class Slider<N extends string> extends BaseElement<N, Slider<N>> {
 		options: { name: N; min: number; max: number; type: "Float" | "Int" },
 		callbackFn: CallbackFunction<Slider<N>> = () => {}
 	) {
-		UI[("AddSlider" + options.type) as `AddSlider${"Int" | "Float"}`].call(
-			null,
-			options.name,
-			options.min,
-			options.max
-		);
+		UI[("AddSlider" + options.type) as `AddSlider${"Int" | "Float"}`](options.name, options.min, options.max);
 
 		super(options);
 

@@ -145,7 +145,7 @@ export class ColorRGBA {
 	};
 
 	public readonly toHSV = (): ColorHSV => {
-		const [r, g, b, a] = this.color;
+		const [r, g, b] = this.color;
 		const max = Math.max(r, g, b);
 		const min = Math.min(r, g, b);
 		const d = max - min;

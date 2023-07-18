@@ -5,7 +5,7 @@ export class Checkbox<N extends string> extends BaseElement<N, Checkbox<N>> {
 	private callbackFn: CallbackFunction<Checkbox<N>>;
 
 	constructor(options: { name: N }, callbackFn: CallbackFunction<Checkbox<N>> = () => {}) {
-		UI.AddCheckbox.call(null, options.name);
+		UI.AddCheckbox(options.name);
 
 		super(options);
 

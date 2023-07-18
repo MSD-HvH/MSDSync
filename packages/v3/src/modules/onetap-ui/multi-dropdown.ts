@@ -6,7 +6,7 @@ export class MultiDropdown<N extends string> extends BaseElement<N, MultiDropdow
 	private callbackFn: CallbackFunction<MultiDropdown<N>>;
 
 	constructor(options: { name: N; elements: string[] }, callbackFn: CallbackFunction<MultiDropdown<N>> = () => {}) {
-		UI.AddMultiDropdown.call(null, options.name, options.elements);
+		UI.AddMultiDropdown(options.name, options.elements);
 
 		super(options);
 

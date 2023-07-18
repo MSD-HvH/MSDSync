@@ -5,7 +5,7 @@ export class Textbox<N extends string> extends BaseElement<N, Textbox<N>> {
 	private callbackFn: CallbackFunction<Textbox<N>>;
 
 	constructor(options: { name: N }, callbackFn: CallbackFunction<Textbox<N>> = () => {}) {
-		UI.AddTextbox.call(null, options.name);
+		UI.AddTextbox(options.name);
 
 		super(options);
 

@@ -1,5 +1,4 @@
 {
-	// https://www.typescriptlang.org/tsconfig
 	"compilerOptions": {
 		"baseUrl": "./",
 
@@ -11,12 +10,9 @@
 		"allowUnusedLabels": false,
 		"allowSyntheticDefaultImports": true,
 
-		"types": [],
+		"module": "ES2020",
+		"moduleResolution": "classic",
 
-		"module": "CommonJS",
-		"moduleResolution": "Node",
-
-		// "declaration": true,
 		"outDir": "./",
 		"newLine": "lf",
 		"esModuleInterop": true,

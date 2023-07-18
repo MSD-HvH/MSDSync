@@ -8,6 +8,7 @@ npm-debug.log*
 
 # JS Files
 **/*.js
+!rollup.config.js
 
 # Test Files
 test.ts
