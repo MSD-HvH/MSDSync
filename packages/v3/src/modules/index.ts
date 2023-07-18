@@ -1,3 +1,4 @@
+export * from "./color-module.js";
 export * from "./drag.js";
 export * from "./easings.js";
 export * from "./input-system.js";
