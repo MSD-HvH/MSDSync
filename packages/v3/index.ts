@@ -22,7 +22,7 @@ CallbackRegister.on("Draw", () => {
 
 	checkbox.RenderBox();
 	checkbox.RenderText({
-		font: Render.AddFont("Verdana.ttf", 8, 400),
+		font: Render.AddFont("Verdana.ttf", 7, 400),
 	});
 
 	checkbox.HandleClick({ input });

@@ -15,7 +15,7 @@
 		"tsup:build": "tsup",
 		"tsup:watch": "tsup --watch",
 		"rollup:build": "rollup -c --bundleConfigAsCjs",
-		"rollup:watch": "rollup -c --bundleConfigAsCjs --watch"
+		"rollup:watch": "rollup -cw --bundleConfigAsCjs"
 	},
 	"type": "module",
 	"homepage": "https://github.com/MasedMSD/MSDSync",

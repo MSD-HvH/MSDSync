@@ -11,5 +11,6 @@ export default defineConfig({
 	clean: true,
 	dts: true,
 	target: "es5",
+	tsconfig: `packages/${IS_V3 ? "v3" : "v4"}/tsconfig.json`,
 	outDir: `C:/Games/Steam/steamapps/common/${IS_V3 ? "2020" : "Counter-Strike Global Offensive"}/ot/scripts`,
 });

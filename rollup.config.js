@@ -11,9 +11,9 @@ export default defineConfig({
 		file: `C:/Games/Steam/steamapps/common/${
 			IS_V3 ? "2020" : "Counter-Strike Global Offensive"
 		}/ot/scripts/index.js`,
-		format: "cjs",
+		format: "esm",
 		strict: false,
 	},
 
-	plugins: [typescript({ tsconfig: "./tsconfig.json" })],
+	plugins: [typescript({ tsconfig: `packages/${IS_V3 ? "v3" : "v4"}/tsconfig.json` })],
 });
