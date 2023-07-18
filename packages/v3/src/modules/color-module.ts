@@ -51,7 +51,8 @@ export const Colors: Record<ColorName, RGBAColor> = {
 	LightPurple: [130, 100, 255, 255],
 };
 
-type RGBAColor = [red: number, green: number, blue: number, alpha: number];
+export type RGBAColor = [red: number, green: number, blue: number, alpha: number];
+export type HSVColor = [hue: number, saturation: number, value: number];
 
 export interface ColorRGBAOptions {
 	color: RGBAColor;
@@ -110,12 +111,12 @@ export class ColorRGBA {
 		return this;
 	};
 
-	public readonly toRGB = (): Pick<RGBAColor, "0" | "1" | "2"> => {
-		return [this.color[0], this.color[1], this.color[2]];
-	};
-
 	public readonly toArray = (): RGBAColor => {
 		return this.color;
+	};
+
+	public readonly toString = (): string => {
+		return this.color.toString();
 	};
 
 	public readonly toJSON = (): { r: number; g: number; b: number; a: number } => {
@@ -125,6 +126,10 @@ export class ColorRGBA {
 			b: this.color[2],
 			a: this.color[3],
 		};
+	};
+
+	public readonly toRGB = (): Pick<RGBAColor, "0" | "1" | "2"> => {
+		return [this.color[0], this.color[1], this.color[2]];
 	};
 
 	public readonly toHEX = ({ alphaIncluded }: { alphaIncluded?: boolean }): ColorHEX => {
@@ -137,6 +142,36 @@ export class ColorRGBA {
 		if (alphaIncluded) str = str + this.color[3].toString(16).substring(0, 2);
 
 		return new ColorHEX({ color: str });
+	};
+
+	public readonly toHSV = (): ColorHSV => {
+		const [r, g, b, a] = this.color;
+		const max = Math.max(r, g, b);
+		const min = Math.min(r, g, b);
+		const d = max - min;
+		let h: number;
+		const s: number = max === 0 ? 0 : d / max;
+		const v: number = max / 255;
+
+		switch (max) {
+			case min:
+				h = 0;
+				break;
+			case r:
+				h = g - b + d * (g < b ? 6 : 0);
+				h /= 6 * d;
+				break;
+			case g:
+				h = b - r + d * 2;
+				h /= 6 * d;
+				break;
+			case b:
+				h = r - g + d * 4;
+				h /= 6 * d;
+				break;
+		}
+
+		return new ColorHSV({ color: [h!, s, v] });
 	};
 }
 
@@ -177,7 +212,77 @@ export class ColorHEX {
 }
 
 export interface ColorHSVOptions {
-	color: [hue: number, saturation: number, value: number];
+	color: HSVColor;
 }
 
-export class ColorHSV {}
+export class ColorHSV {
+	private color!: HSVColor;
+
+	constructor({ color }: ColorHSVOptions) {
+		this.color = color;
+	}
+
+	public readonly SetColor = <V extends HSVColor>(value: V): ColorHSV => {
+		this.color = value;
+
+		return this;
+	};
+
+	public readonly toArray = (): HSVColor => {
+		return this.color;
+	};
+
+	public readonly toJSON = (): { h: number; s: number; v: number } => {
+		return {
+			h: this.color[0],
+			s: this.color[1],
+			v: this.color[2],
+		};
+	};
+
+	public readonly toString = (): string => {
+		return this.color.toString();
+	};
+
+	public readonly toRGB = (): ColorRGBA => {
+		const [h, s, v] = this.color;
+
+		let r: number;
+		let g: number;
+		let b: number;
+		let i: number;
+		let f: number;
+		let p: number;
+		let q: number;
+		let t: number;
+
+		i = Math.floor(h * 6);
+		f = h * 6 - i;
+		p = v * (1 - s);
+		q = v * (1 - f * s);
+		t = v * (1 - (1 - f) * s);
+
+		switch (i % 6) {
+			case 0:
+				(r = v), (g = t), (b = p);
+				break;
+			case 1:
+				(r = q), (g = v), (b = p);
+				break;
+			case 2:
+				(r = p), (g = v), (b = t);
+				break;
+			case 3:
+				(r = p), (g = q), (b = v);
+				break;
+			case 4:
+				(r = t), (g = p), (b = v);
+				break;
+			case 5:
+				(r = v), (g = p), (b = q);
+				break;
+		}
+
+		return new ColorRGBA({ color: [r!, g!, b!, 255] });
+	};
+}
