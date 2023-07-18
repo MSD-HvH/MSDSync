@@ -14,7 +14,7 @@
 import { InputSystem, MSDSyncCheckbox, Window, Callbacks } from "./src/index.js";
 
 const input = new InputSystem();
-const checkbox = new MSDSyncCheckbox({ name: "Hello world", window: new Window() });
+const checkbox = new MSDSyncCheckbox({ name: "Hello world", window: new Window({ x: 100, y: 100 }) });
 const CallbackRegister = new Callbacks();
 
 CallbackRegister.on("Draw", () => {
@@ -22,7 +22,9 @@ CallbackRegister.on("Draw", () => {
 
 	checkbox.RenderBox();
 	checkbox.RenderText({
-		font: Render.AddFont("Verdana.ttf", 7, 400),
+		font: Render.AddFont("Segoeui.ttf", 12, 200),
+		padding_left: 5,
+		padding_top: 4,
 	});
 
 	checkbox.HandleClick({ input });
