@@ -26,28 +26,34 @@ export class MSDSyncMultiDropdown<N extends string> extends MultiDropdown<N> {
 		return this;
 	};
 
-	public readonly RenderText = (options: {
+	public readonly RenderText = ({
+		font,
+		padding_left,
+		padding_bottom,
+	}: {
 		font: number;
 		padding_left?: number;
 		padding_bottom?: number;
 	}): MSDSyncMultiDropdown<N> => {
 		const { x, y, width } = this.window.toJSON();
-		const text_x = x + (options?.padding_left || 6);
-		const text_y = y - (options?.padding_bottom || 16);
+		const text_x = x + (padding_left == undefined ? 6 : padding_left);
+		const text_y = y - (padding_bottom == undefined ? 16 : padding_bottom);
 
 		const elements = this.GetActiveElements();
 		const text = elements.length <= 0 ? "None" : elements.join(", ");
-		const elementsTextSize = Render.TextSize(text, options.font);
+		const elementsTextSize = Render.TextSize(text, font);
 		const elementsText =
-			elementsTextSize[0] > width - (options?.padding_left || 6) ? text.slice(0, 20) + "..." : text;
+			elementsTextSize[0] > width - (padding_left == undefined ? 6 : padding_left)
+				? text.slice(0, 20) + "..."
+				: text;
 
-		Render.String(text_x, text_y, 0, this.GetName(), FontColor, options.font);
-		Render.String(x + 6, y + 2, 0, elementsText, FontColor, options.font);
+		Render.String(text_x, text_y, 0, this.GetName(), FontColor, font);
+		Render.String(x + 6, y + 2, 0, elementsText, FontColor, font);
 
 		return this;
 	};
 
-	public readonly RenderElements = (options: { font: number }): MSDSyncMultiDropdown<N> => {
+	public readonly RenderElements = ({ font }: { font: number }): MSDSyncMultiDropdown<N> => {
 		if (!this.state) return this;
 
 		const { x, y, width, height } = this.window.toJSON();
@@ -58,7 +64,7 @@ export class MSDSyncMultiDropdown<N extends string> extends MultiDropdown<N> {
 
 			if (this.GetValue() & (1 << i)) Render.FilledRect(x, y + 20 + offset, width, height, [43, 43, 43, 155]);
 
-			Render.String(x + 6, y + 20 + 2 + offset, 0, element, FontColor, options.font);
+			Render.String(x + 6, y + 20 + 2 + offset, 0, element, FontColor, font);
 			Render.FilledRect(x, y + 20 + offset, width, 1, [43, 43, 43, 155]);
 		});
 
@@ -75,10 +81,10 @@ export class MSDSyncMultiDropdown<N extends string> extends MultiDropdown<N> {
 		return this;
 	};
 
-	public readonly HandleClick = (options: { input: InputSystem }): void => {
+	public readonly HandleClick = ({ input }: { input: InputSystem }): void => {
 		// #region Открытие/закрытие dropdown
 		const { window, state, SetState, GetState, SetValue, GetValue, GetElements } = this;
-		const { IsInBounds, IsPressed } = options.input;
+		const { IsInBounds, IsPressed } = input;
 
 		const isInBounds = IsInBounds(window.toJSON());
 		const isPressed = IsPressed(0x01);

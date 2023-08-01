@@ -11,23 +11,59 @@
 	return e;
 });
 
-import { InputSystem, MSDSyncCheckbox, Window, Callbacks } from "./src/index.js";
+import {
+	InputSystem,
+	MSDSyncCheckbox,
+	MSDSyncDropdown,
+	MSDSyncMultiDropdown,
+	MSDSyncSlider,
+	Window,
+	Callbacks,
+} from "./src/index.js";
 
 const input = new InputSystem();
-const checkbox = new MSDSyncCheckbox({ name: "Hello world", window: new Window({ x: 100, y: 100 }) });
+const checkbox = new MSDSyncCheckbox({ name: "MSDSync Checkbox", window: new Window({ x: 100, y: 100 }) });
+const dropdown = new MSDSyncDropdown({
+	name: "MSDSync Dropdown",
+	elements: ["Hello", "World"],
+	window: new Window({ x: 100, y: 200, width: 140 }),
+});
+const multiDropdown = new MSDSyncMultiDropdown({
+	name: "MSDSync MultiDropdown",
+	elements: ["Hello", "World"],
+	window: new Window({ x: 100, y: 300, width: 140 }),
+});
+const slider = new MSDSyncSlider({
+	name: "MSDSync Slider",
+	min: 0,
+	max: 100,
+	window: new Window({ x: 100, y: 400, width: 140 }),
+});
 const CallbackRegister = new Callbacks();
 
 CallbackRegister.on("Draw", () => {
 	input.UpdateInputSystem();
 
+	const font = Render.AddFont("Segoeui.ttf", 8, 200);
+
 	checkbox.RenderBox();
-	checkbox.RenderText({
-		font: Render.AddFont("Segoeui.ttf", 12, 200),
-		padding_left: 5,
-		padding_top: 4,
-	});
+	checkbox.RenderText({ font });
+
+	dropdown.RenderBox();
+	dropdown.RenderElements({ font });
+	dropdown.RenderText({ font });
+
+	multiDropdown.RenderBox();
+	multiDropdown.RenderElements({ font });
+	multiDropdown.RenderText({ font });
+
+	slider.RenderBox();
+	slider.RenderText({ font });
 
 	checkbox.HandleClick({ input });
+	dropdown.HandleClick({ input });
+	multiDropdown.HandleClick({ input });
+	slider.HandleClick({ input });
 });
 
 CallbackRegister.RegisterCallbacks();

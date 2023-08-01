@@ -26,22 +26,26 @@ export class MSDSyncDropdown<N extends string> extends Dropdown<N> {
 		return this;
 	};
 
-	public readonly RenderText = (options: {
+	public readonly RenderText = ({
+		font,
+		padding_left,
+		padding_bottom,
+	}: {
 		font: number;
 		padding_left?: number;
 		padding_bottom?: number;
 	}): MSDSyncDropdown<N> => {
 		const { x, y } = this.window.toJSON();
-		const text_x = x + (options?.padding_left || 6);
-		const text_y = y - (options?.padding_bottom || 16);
+		const text_x = x + (padding_left == undefined ? 6 : padding_left);
+		const text_y = y - (padding_bottom == undefined ? 16 : padding_bottom);
 
-		Render.String(text_x, text_y, 0, this.GetName(), FontColor, options.font);
-		Render.String(x + 6, y + 2, 0, this.GetElement(this.GetValue()), FontColor, options.font);
+		Render.String(text_x, text_y, 0, this.GetName(), FontColor, font);
+		Render.String(x + 6, y + 2, 0, this.GetElement(this.GetValue()), FontColor, font);
 
 		return this;
 	};
 
-	public readonly RenderElements = (options: { font: number }): MSDSyncDropdown<N> => {
+	public readonly RenderElements = ({ font }: { font: number }): MSDSyncDropdown<N> => {
 		if (!this.state) return this;
 
 		const { x, y, width, height } = this.window.toJSON();
@@ -52,7 +56,7 @@ export class MSDSyncDropdown<N extends string> extends Dropdown<N> {
 
 			if (this.GetValue() === i) Render.FilledRect(x, y + 20 + offset, width, height, [43, 43, 43, 155]);
 
-			Render.String(x + 6, y + 20 + 2 + offset, 0, element, FontColor, options.font);
+			Render.String(x + 6, y + 20 + 2 + offset, 0, element, FontColor, font);
 			Render.FilledRect(x, y + 20 + offset, width, 1, [43, 43, 43, 155]);
 		});
 
@@ -69,9 +73,9 @@ export class MSDSyncDropdown<N extends string> extends Dropdown<N> {
 		return this;
 	};
 
-	public readonly HandleClick = (options: { input: InputSystem }) => {
+	public readonly HandleClick = ({ input }: { input: InputSystem }) => {
 		// #region Открытие/закрытие dropdown
-		const { IsInBounds, IsPressed } = options.input;
+		const { IsInBounds, IsPressed } = input;
 		const { window, state, SetState, GetState, SetValue, GetValue, GetElements } = this;
 
 		const isInBounds = IsInBounds(window.toJSON());

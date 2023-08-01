@@ -16,8 +16,9 @@ export class Callbacks {
 	public readonly AddHandler = <N extends string>(name: N) => {
 		callbackHandlers[name] = new Function(`
             var list = callbacks["${name}"];
+
             for (var i = 0; i < list.length; i++) {
-            list[i]("${name}");
+            	list[i]("${name}");
             }
         `);
 
@@ -25,9 +26,7 @@ export class Callbacks {
 	};
 
 	public readonly AddCallback = <N extends CallbackName, F extends Callback>(callbackName: N, callbackFn: F) => {
-		if (!this.CallbackIsExists(callbackName)) {
-			callbacks[callbackName] = [];
-		}
+		if (!this.CallbackIsExists(callbackName)) callbacks[callbackName] = [];
 
 		callbacks[callbackName]!.push(callbackFn);
 

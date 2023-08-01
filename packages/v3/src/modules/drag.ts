@@ -1,15 +1,9 @@
 import type { InputSystem, Window } from "./index.js";
 
-/**
- * @class
- */
 export class Drag {
 	private is_dragging: boolean = false;
 	private drag_position: [number, number] = [0, 0];
 
-	/**
-	 * @constructor
-	 */
 	constructor() {}
 
 	public readonly CreateDrag = ({ window, input }: { window: Window; input: InputSystem }) => {

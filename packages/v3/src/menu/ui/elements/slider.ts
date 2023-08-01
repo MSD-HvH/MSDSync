@@ -29,23 +29,27 @@ export class MSDSyncSlider<N extends string> extends Slider<N> {
 		return this;
 	};
 
-	public readonly RenderText = (options: {
+	public readonly RenderText = ({
+		font,
+		padding_left,
+		padding_bottom,
+	}: {
 		font: number;
 		padding_left?: number;
 		padding_bottom?: number;
 	}): MSDSyncSlider<N> => {
 		const { x, y } = this.window.toJSON();
-		const text_x = x + (options?.padding_left || 6);
-		const text_y = y - (options?.padding_bottom || 16);
+		const text_x = x + (padding_left == undefined ? 6 : padding_left);
+		const text_y = y - (padding_bottom == undefined ? 16 : padding_bottom);
 
-		Render.String(text_x, text_y, 0, this.GetName(), FontColor, options.font);
+		Render.String(text_x, text_y, 0, this.GetName(), FontColor, font);
 
 		return this;
 	};
 
-	public readonly HandleClick = (options: { input: InputSystem }) => {
+	public readonly HandleClick = ({ input }: { input: InputSystem }) => {
 		// #region Переменные
-		const { IsInBounds, GetHoldPos, IsDown, GetMouseX } = options.input;
+		const { IsInBounds, GetHoldPos, IsDown, GetMouseX } = input;
 		const { window, GetMinimumValue, GetMaximumValue, SetValue } = this;
 		const { x, y, width, height } = window.toJSON();
 

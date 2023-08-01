@@ -12,7 +12,7 @@ export class Easings {
 		end: E;
 		time?: T;
 	}): number => {
-		return start + (end - start) * (time || defaultTime);
+		return start + (end - start) * (time == undefined ? defaultTime : time);
 	};
 
 	public readonly LerpRounded = <S extends number, E extends number, T extends number>(options: {

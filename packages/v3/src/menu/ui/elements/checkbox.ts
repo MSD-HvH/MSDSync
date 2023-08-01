@@ -30,16 +30,20 @@ export class MSDSyncCheckbox<N extends string> extends Checkbox<N> {
 		return this;
 	};
 
-	public readonly RenderText = (options: {
+	public readonly RenderText = ({
+		font,
+		padding_left,
+		padding_top,
+	}: {
 		font: number;
 		padding_left?: number;
 		padding_top?: number;
 	}): MSDSyncCheckbox<N> => {
 		const { x, y, width } = this.window.toJSON();
-		const text_x = x + width + (options?.padding_left || 6);
-		const text_y = y + (options?.padding_top || 2);
+		const text_x = x + width + (padding_left == undefined ? 6 : padding_left);
+		const text_y = y + (padding_top == undefined ? 2 : padding_top);
 
-		Render.String(text_x, text_y, 0, this.GetName(), FontColor, options.font);
+		Render.String(text_x, text_y, 0, this.GetName(), FontColor, font);
 
 		return this;
 	};
