@@ -1,5 +1,5 @@
 import { InputSystem, Window, MultiDropdown } from "../../../modules/index.js";
-import { ElementBackgroundColor, ElementOutline, FontColor } from "./index.js";
+import { ElementBackgroundColor, ElementOutline } from "./index.js";
 
 export class MSDSyncMultiDropdown<N extends string> extends MultiDropdown<N> {
 	private state: boolean = false;
@@ -26,51 +26,6 @@ export class MSDSyncMultiDropdown<N extends string> extends MultiDropdown<N> {
 		return this;
 	};
 
-	public readonly RenderText = ({
-		font,
-		padding_left,
-		padding_bottom,
-	}: {
-		font: number;
-		padding_left?: number;
-		padding_bottom?: number;
-	}): MSDSyncMultiDropdown<N> => {
-		const { x, y, width } = this.window.toJSON();
-		const text_x = x + (padding_left == undefined ? 6 : padding_left);
-		const text_y = y - (padding_bottom == undefined ? 16 : padding_bottom);
-
-		const elements = this.GetActiveElements();
-		const text = elements.length <= 0 ? "None" : elements.join(", ");
-		const elementsTextSize = Render.TextSize(text, font);
-		const elementsText =
-			elementsTextSize[0] > width - (padding_left == undefined ? 6 : padding_left)
-				? text.slice(0, 20) + "..."
-				: text;
-
-		Render.String(text_x, text_y, 0, this.GetName(), FontColor, font);
-		Render.String(x + 6, y + 2, 0, elementsText, FontColor, font);
-
-		return this;
-	};
-
-	public readonly RenderElements = ({ font }: { font: number }): MSDSyncMultiDropdown<N> => {
-		if (!this.state) return this;
-
-		const { x, y, width, height } = this.window.toJSON();
-		const elements = this.GetElements();
-
-		elements.forEach((element, i) => {
-			const offset = 20 * i;
-
-			if (this.GetValue() & (1 << i)) Render.FilledRect(x, y + 20 + offset, width, height, [43, 43, 43, 155]);
-
-			Render.String(x + 6, y + 20 + 2 + offset, 0, element, FontColor, font);
-			Render.FilledRect(x, y + 20 + offset, width, 1, [43, 43, 43, 155]);
-		});
-
-		return this;
-	};
-
 	public readonly GetState = (): boolean => {
 		return this.state;
 	};
@@ -82,17 +37,12 @@ export class MSDSyncMultiDropdown<N extends string> extends MultiDropdown<N> {
 	};
 
 	public readonly HandleClick = ({ input }: { input: InputSystem }): void => {
-		// #region Открытие/закрытие dropdown
 		const { window, state, SetState, GetState, SetValue, GetValue, GetElements } = this;
 		const { IsInBounds, IsPressed } = input;
-
 		const isInBounds = IsInBounds(window.toJSON());
 		const isPressed = IsPressed(0x01);
 
 		if (isInBounds && isPressed) SetState(!GetState());
-		// #endregion
-
-		// #region Выбор элемента
 		if (!state) return;
 
 		const elements = GetElements();
@@ -102,11 +52,8 @@ export class MSDSyncMultiDropdown<N extends string> extends MultiDropdown<N> {
 			const offset = 20 * i;
 			const elementIsInBounds = IsInBounds({ x, y: y + 20 + offset, width, height });
 
-			if (elementIsInBounds && isPressed) {
-				// Очко болит
-				SetValue(GetValue() ^ (1 << i));
-			}
+			// Очко болит
+			if (elementIsInBounds && isPressed) SetValue(GetValue() ^ (1 << i));
 		});
-		// #endregion
 	};
 }

@@ -1,5 +1,5 @@
 import { Checkbox, InputSystem, Window } from "../../../modules/index.js";
-import { AccentColor, ElementBackgroundColor, ElementOutline, FontColor } from "./index.js";
+import { AccentColor, ElementBackgroundColor, ElementOutline } from "./index.js";
 
 export class MSDSyncCheckbox<N extends string> extends Checkbox<N> {
 	private readonly window: Window;
@@ -15,35 +15,14 @@ export class MSDSyncCheckbox<N extends string> extends Checkbox<N> {
 		return this.window;
 	};
 
-	public readonly RenderBox = (): MSDSyncCheckbox<N> => {
+	public readonly RenderBox = ({ padding }: { padding: number } = { padding: 4 }): MSDSyncCheckbox<N> => {
 		const { x, y, width, height } = this.window.toJSON();
 
 		Render.FilledRect(x, y, width, height, ElementBackgroundColor);
 		Render.Rect(x, y, width, height, ElementOutline);
 
-		if (this.GetValue()) {
-			const padding = 4;
-
+		if (this.GetValue())
 			Render.FilledRect(x + padding, y + padding, width - padding * 2, height - padding * 2, AccentColor);
-		}
-
-		return this;
-	};
-
-	public readonly RenderText = ({
-		font,
-		padding_left,
-		padding_top,
-	}: {
-		font: number;
-		padding_left?: number;
-		padding_top?: number;
-	}): MSDSyncCheckbox<N> => {
-		const { x, y, width } = this.window.toJSON();
-		const text_x = x + width + (padding_left == undefined ? 6 : padding_left);
-		const text_y = y + (padding_top == undefined ? 2 : padding_top);
-
-		Render.String(text_x, text_y, 0, this.GetName(), FontColor, font);
 
 		return this;
 	};
